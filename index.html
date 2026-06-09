@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amphitrite – Offshore, Subsea &amp; Marine Construction</title>
+<meta name="description" content="High-resolution ocean intelligence for offshore operations. Wind, waves, and the most accurate ocean currents at 3.0 km — for route-to-site planning, workability windows, DP operations, cable lay, and survey.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f8f9fb; font-family: 'DM Sans', sans-serif; color: #1a1a2e; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 680px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+  a { color: inherit; }
+
+  /* Logo bar */
+  .logo-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 1.6rem; padding-bottom: 1.2rem; border-bottom: 1px solid #e2e8f0; text-decoration: none; }
+  .logo-bar img { height: 36px; transition: transform 0.2s; }
+  .logo-bar:hover img { transform: scale(1.06); }
+  .logo-name { font-size: 16px; font-weight: 600; color: #0f172a; }
+  .logo-sub { font-size: 12px; color: #64748b; margin-top: 1px; }
+  .logo-link-tag { margin-left: auto; font-size: 11px; font-weight: 500; color: #185FA5; background: #E6F1FB; padding: 5px 11px; border-radius: 20px; white-space: nowrap; }
+
+  /* Context / explainer strip */
+  .context { background: linear-gradient(135deg, #0A1E3D 0%, #103a6b 100%); border-radius: 14px; padding: 24px 22px; margin-bottom: 1.6rem; position: relative; overflow: hidden; }
+  .context::after { content: ''; position: absolute; right: -40px; top: -40px; width: 180px; height: 180px; background: radial-gradient(circle, rgba(74,144,217,0.25), transparent 70%); }
+  .context-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; position: relative; z-index: 1; }
+  .context-head img { height: 26px; }
+  .context-head span { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #7dd3fc; }
+  .context-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 500; color: #fff; line-height: 1.35; margin-bottom: 10px; position: relative; z-index: 1; }
+  .context-text { font-size: 13.5px; line-height: 1.65; color: #c3d6ee; position: relative; z-index: 1; }
+  .context-text b { color: #fff; font-weight: 500; }
+  .context-flow { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; position: relative; z-index: 1; }
+  .context-flow span { font-size: 11.5px; font-weight: 500; color: #cfe3fb; background: rgba(74,144,217,0.18); border: 1px solid rgba(125,211,252,0.25); padding: 5px 11px; border-radius: 20px; }
+
+  /* Hero */
+  .hero-tag { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #185FA5; background: #E6F1FB; padding: 4px 10px; border-radius: 20px; margin-bottom: 1rem; }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 400; line-height: 1.25; margin-bottom: 0.75rem; color: #0f172a; }
+  .hero-sub { font-size: 15px; color: #64748b; line-height: 1.6; margin-bottom: 1.5rem; }
+
+  .divider { height: 1px; background: #e2e8f0; margin: 2rem 0; }
+
+  /* Section labels */
+  .section-label { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #94a3b8; margin-bottom: 0.8rem; }
+  .section-label img { height: 20px; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 400; color: #0f172a; margin-bottom: 0.5rem; line-height: 1.35; }
+  .section-title-lg { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 600; color: #0f172a; margin-bottom: 0.6rem; line-height: 1.25; }
+  .body-text { font-size: 14px; line-height: 1.7; color: #334155; margin-bottom: 0.75rem; }
+  .body-text b { color: #0f172a; font-weight: 600; }
+
+  /* Partners ticker */
+  .partners-section { margin: 1.5rem 0; }
+  .partners-label { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #94a3b8; text-align: center; margin-bottom: 1rem; }
+  .partners-wrap { overflow: hidden; position: relative; }
+  .partners-wrap::before, .partners-wrap::after { content: ''; position: absolute; top: 0; bottom: 0; width: 48px; z-index: 1; pointer-events: none; }
+  .partners-wrap::before { left: 0; background: linear-gradient(to right, #f8f9fb, transparent); }
+  .partners-wrap::after { right: 0; background: linear-gradient(to left, #f8f9fb, transparent); }
+  .partners-track { display: flex; align-items: center; width: max-content; animation: scroll-partners 24s linear infinite; }
+  .partners-track:hover { animation-play-state: paused; }
+  .partner-item { font-size: 14px; font-weight: 600; color: #334155; letter-spacing: 0.04em; padding: 0 1.6rem; white-space: nowrap; }
+  .partner-sep { color: #cbd5e1; font-size: 10px; flex-shrink: 0; }
+  @keyframes scroll-partners { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* Steps */
+  .data-steps { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1rem; }
+  .step { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; border: 1px solid #e2e8f0; border-radius: 10px; background: #fff; }
+  .step-num { width: 22px; height: 22px; border-radius: 50%; background: #E6F1FB; color: #185FA5; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .step-text { font-size: 14px; line-height: 1.6; color: #1a1a2e; }
+  .step-text b { font-weight: 600; }
+
+  /* Benefits */
+  .benefits-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1rem; }
+  .benefit-row { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; border: 1px solid #e2e8f0; border-radius: 10px; background: #fff; }
+  .benefit-dot { width: 8px; height: 8px; border-radius: 50%; background: #185FA5; flex-shrink: 0; margin-top: 6px; }
+  .benefit-title { font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 4px; }
+  .benefit-desc { font-size: 13px; color: #64748b; line-height: 1.55; }
+
+  /* Profile / highlight boxes */
+  .profile-box { padding: 20px 22px; border: 1px solid #B5D4F4; border-radius: 10px; background: #E6F1FB; margin-bottom: 10px; }
+  .profile-box p { font-size: 14px; line-height: 1.65; color: #0C447C; }
+  .profile-box b { font-weight: 600; }
+  .profile-stat { display: inline-block; margin-top: 12px; font-size: 12px; font-weight: 500; background: #185FA5; color: #fff; padding: 5px 14px; border-radius: 20px; }
+
+  /* Problem box */
+  .problem-box { padding: 16px 18px; border-left: 3px solid #185FA5; border-radius: 0 8px 8px 0; background: #f1f5f9; margin: 1rem 0; }
+  .problem-box p { font-size: 14px; line-height: 1.65; color: #475569; }
+  .stat-inline { font-weight: 600; color: #185FA5; }
+
+  /* Role chips */
+  .chips-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1rem; }
+  .chip { font-size: 12px; font-weight: 500; color: #0C447C; background: #E6F1FB; border: 1px solid #B5D4F4; padding: 5px 12px; border-radius: 20px; }
+
+  /* Stat grid */
+  .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 1rem 0; }
+  .stat-card { border: 1px solid #e2e8f0; border-radius: 10px; background: #fff; padding: 14px 12px; text-align: center; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; color: #185FA5; line-height: 1; }
+  .stat-lbl { font-size: 11px; color: #64748b; margin-top: 6px; line-height: 1.4; }
+
+  /* Visual panels */
+  .viz { border-radius: 16px; overflow: hidden; background: #07223f; box-shadow: 0 8px 30px rgba(13,33,69,0.12); margin: 0.5rem 0 0.7rem; }
+  .viz svg { display: block; width: 100%; height: auto; }
+  .viz-caption { font-size: 12px; color: #64748b; line-height: 1.55; margin: 0 2px 1.4rem; font-style: italic; }
+
+  /* Case study cards */
+  .case-grid { display: flex; flex-direction: column; gap: 14px; margin-bottom: 1rem; }
+  .case-card { padding: 18px 20px; border: 1px solid #e2e8f0; border-radius: 10px; background: #fff; }
+  .case-card.hero-case { border-color: #B5D4F4; background: linear-gradient(180deg,#f4f9ff,#fff); }
+  .case-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 4px; }
+  .case-badge { font-size: 11px; font-weight: 600; background: #E6F1FB; color: #185FA5; padding: 3px 10px; border-radius: 20px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+  .case-badge.val { background: #dcfce7; color: #15803d; }
+  .case-title { font-size: 14px; font-weight: 600; color: #0f172a; line-height: 1.35; }
+  .case-route { font-size: 12px; color: #94a3b8; margin-top: 2px; }
+  .case-stats { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .case-stat { font-size: 12px; font-weight: 600; background: #f1f5f9; color: #185FA5; padding: 4px 10px; border-radius: 6px; }
+  .case-desc { font-size: 13px; color: #64748b; line-height: 1.6; margin-top: 10px; }
+  .case-source { font-size: 11px; color: #94a3b8; margin-top: 8px; }
+
+  /* Defence credibility */
+  .defence { background: linear-gradient(135deg,#0b1f33 0%,#10314f 100%); border-radius: 14px; padding: 24px 22px; margin: 1.2rem 0; position: relative; overflow: hidden; }
+  .defence::after { content:''; position:absolute; right:-30px; bottom:-40px; width:160px; height:160px; background: radial-gradient(circle, rgba(125,211,252,0.18), transparent 70%); }
+  .defence-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #7dd3fc; margin-bottom: 8px; }
+  .defence-title { font-family:'Playfair Display',serif; font-size: 1.2rem; color:#fff; line-height:1.35; margin-bottom: 10px; position:relative; z-index:1; }
+  .defence-text { font-size: 13.5px; line-height: 1.65; color: #c3d6ee; position: relative; z-index:1; }
+  .defence-text b { color: #fff; font-weight: 600; }
+  .defence-flags { display:flex; gap:7px; flex-wrap:wrap; margin-top:14px; position:relative; z-index:1; }
+  .defence-flags span { font-size:11.5px; font-weight:500; color:#cfe3fb; background: rgba(74,144,217,0.18); border:1px solid rgba(125,211,252,0.25); padding:5px 11px; border-radius:20px; }
+
+  /* FAQ */
+  .faq-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 1rem; }
+  .faq-item { border: 1px solid #e2e8f0; border-radius: 10px; background: #fff; overflow: hidden; }
+  .faq-q { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; cursor: pointer; font-size: 14px; font-weight: 500; color: #0f172a; gap: 12px; }
+  .faq-toggle { width: 20px; height: 20px; border-radius: 50%; background: #E6F1FB; color: #185FA5; font-size: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .faq-a { padding: 0 16px; max-height: 0; overflow: hidden; transition: max-height 0.25s ease, padding 0.25s ease; }
+  .faq-a.open { max-height: 360px; padding: 0 16px 14px; }
+  .faq-a p { font-size: 13px; color: #64748b; line-height: 1.65; }
+
+  /* White paper box */
+  .wp-box { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border: 1px solid #e2e8f0; border-radius: 10px; background: #fff; margin-bottom: 1.5rem; text-decoration: none; }
+  .wp-icon { width: 36px; height: 36px; border-radius: 8px; background: #E6F1FB; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 18px; }
+  .wp-title { font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 2px; }
+  .wp-text { font-size: 13px; color: #64748b; }
+
+  /* CTAs */
+  .cta-primary { display: block; width: 100%; padding: 14px; border-radius: 10px; background: #185FA5; color: #fff; font-size: 15px; font-weight: 600; text-align: center; text-decoration: none; margin-bottom: 10px; border: none; cursor: pointer; }
+  .cta-primary:hover { background: #0C447C; }
+  .cta-secondary { display: block; width: 100%; padding: 13px; border-radius: 10px; border: 1px solid #cbd5e1; background: #fff; color: #1a1a2e; font-size: 14px; text-align: center; text-decoration: none; margin-bottom: 10px; }
+  .cta-secondary:hover { background: #f8f9fb; }
+  .cal-row { display: flex; gap: 10px; margin-bottom: 10px; }
+  .cal-btn { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 13px; border-radius: 10px; border: 1px solid #cbd5e1; background: #fff; color: #1a1a2e; font-size: 13px; text-decoration: none; cursor: pointer; }
+  .cal-btn:hover { background: #f8f9fb; }
+
+  /* Ocean Bulletin CTA */
+  .ob-cta { background: #0A1E3D; border-radius: 12px; padding: 28px 24px; margin: 1.5rem 0; text-align: center; }
+  .ob-cta img { height: 30px; margin-bottom: 10px; }
+  .ob-cta-label { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #7098C8; margin-bottom: 0.6rem; }
+  .ob-cta-title { font-family:'Playfair Display',serif; font-size: 1.3rem; color:#fff; margin-bottom: 0.5rem; }
+  .ob-cta-text { font-size: 13.5px; color:#c3d6ee; line-height:1.6; margin-bottom: 1rem; }
+  .ob-cta a { display:inline-block; background:#5b9bd5; color:#fff; font-weight:600; font-size:14px; padding:11px 22px; border-radius:9px; text-decoration:none; }
+  .ob-cta a:hover { background:#4a8ac4; }
+
+  /* Footer */
+  footer { border-top: 1px solid #e2e8f0; margin-top: 2rem; padding-top: 1.4rem; }
+  .foot-contact { font-size: 14px; color:#334155; margin-bottom: 1rem; }
+  .foot-contact b { color:#0f172a; }
+  .foot-contact a { color:#185FA5; text-decoration:none; }
+  .foot-logo { display:flex; align-items:center; gap:10px; }
+  .foot-logo img { height: 28px; }
+  .foot-logo .logo-name { font-size: 14px; }
+
+  @media (max-width: 560px) {
+    .hero-title { font-size: 1.7rem; }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+    .cal-row { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Logo bar -->
+  <a class="logo-bar" href="https://www.amphitrite.fr/" target="_blank" rel="noopener">
+    <img src="https://api.amphitrite.fr/docs/rotating_logo.gif" alt="Amphitrite">
+    <div>
+      <div class="logo-name">Amphitrite</div>
+      <div class="logo-sub">Ocean Data Intelligence</div>
+    </div>
+    <span class="logo-link-tag">amphitrite.fr →</span>
+  </a>
+
+  <!-- Context strip -->
+  <div class="context">
+    <div class="context-head">
+      <img src="https://api.amphitrite.fr/docs/rotating_logo.gif" alt="">
+      <span>Start here</span>
+    </div>
+    <div class="context-title">Most offshore downtime decisions hinge on the ocean — and the current picture is the part everyone gets wrong.</div>
+    <div class="context-text">
+      Amphitrite is an ocean data intelligence company. We combine <b>wind, waves, and ocean currents</b> into one operational picture — and we run our <b>own AI ocean-current models at 3.0 km resolution</b>, validated against in-situ measurements. Wind and wave forecasting is mature; high-resolution current forecasting is the gap, and <b>that is what we do best</b>. For survey, cable lay, subsea, installation, and tow, that means sharper <b>route-to-site planning</b>, clearer <b>workability windows</b>, and fewer surprises on arrival.
+    </div>
+    <div class="context-flow">
+      <span>1 · Plan the route-to-site</span>
+      <span>2 · Pick the work window</span>
+      <span>3 · Execute with confidence</span>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <span class="hero-tag">Offshore · Subsea · Marine Construction</span>
+  <h1 class="hero-title">High-resolution ocean intelligence for offshore operations.</h1>
+  <p class="hero-sub">Wind, waves, and the most accurate ocean currents available — <b>3.0 km resolution, hourly, tidal-aware, 14-day horizon</b>. One integrated picture for route-to-site planning, workability windows, DP-sensitive operations, cable lay, tow planning, and survey.</p>
+  <a class="cta-primary" href="https://cal.com/noah-amphitrite/meeting" target="_blank" rel="noopener">Book a working session</a>
+  <a class="cta-secondary" href="https://bulletin.amphitrite.fr/" target="_blank" rel="noopener">Open Ocean Bulletin — plan a route now →</a>
+
+  <!-- Partners -->
+  <div class="partners-section">
+    <div class="partners-label">Trusted by</div>
+    <div class="partners-wrap">
+      <div class="partners-track">
+        <span class="partner-item">Boskalis</span><span class="partner-sep">●</span>
+        <span class="partner-item">Heerema</span><span class="partner-sep">●</span>
+        <span class="partner-item">Van Oord</span><span class="partner-sep">●</span>
+        <span class="partner-item">Orange Marine</span><span class="partner-sep">●</span>
+        <span class="partner-item">NATO</span><span class="partner-sep">●</span>
+        <span class="partner-item">ESA</span><span class="partner-sep">●</span>
+        <span class="partner-item">CMA CGM</span><span class="partner-sep">●</span>
+        <span class="partner-item">Louis Dreyfus Armateurs</span><span class="partner-sep">●</span>
+        <span class="partner-item">Boskalis</span><span class="partner-sep">●</span>
+        <span class="partner-item">Heerema</span><span class="partner-sep">●</span>
+        <span class="partner-item">Van Oord</span><span class="partner-sep">●</span>
+        <span class="partner-item">Orange Marine</span><span class="partner-sep">●</span>
+        <span class="partner-item">NATO</span><span class="partner-sep">●</span>
+        <span class="partner-item">ESA</span><span class="partner-sep">●</span>
+        <span class="partner-item">CMA CGM</span><span class="partner-sep">●</span>
+        <span class="partner-item">Louis Dreyfus Armateurs</span><span class="partner-sep">●</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Underwater visual -->
+  <div class="section-label"><img src="https://api.amphitrite.fr/docs/rotating_logo.gif" alt="">Why currents decide the operation</div>
+  <h2 class="section-title">It is not just the surface. Currents run through the whole water column — and through your whole operation.</h2>
+  <p class="body-text">Wind and waves are felt at the surface. <b>Currents act on everything below it</b> — the lay catenary, the touchdown point, the ROV, the diver, the DP system, and the seabed itself. Get the current picture wrong and the work window, the touchdown, and the burial all get harder.</p>
+
+  <div class="viz">
+    <!-- Cross-section: surface vessel + cable catenary + ROV + seabed scour + depth-resolved currents -->
+    <svg viewBox="0 0 680 430" role="img" aria-label="Cross-section of an offshore operation showing how ocean currents act through the water column">
+      <defs>
+        <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#0d3a64"/>
+          <stop offset="1" stop-color="#061a31"/>
+        </linearGradient>
+        <linearGradient id="cur" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#37c2b6" stop-opacity="0.15"/>
+          <stop offset="1" stop-color="#37c2b6" stop-opacity="0.9"/>
+        </linearGradient>
+        <marker id="ah" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
+          <path d="M0,0 L7,3 L0,6 Z" fill="#37c2b6"/>
+        </marker>
+        <marker id="ahw" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
+          <path d="M0,0 L7,3 L0,6 Z" fill="#9fd0ff"/>
+        </marker>
+      </defs>
+
+      <!-- sky -->
+      <rect x="0" y="0" width="680" height="70" fill="#0a2747"/>
+      <!-- wind -->
+      <line x1="430" y1="34" x2="560" y2="34" stroke="#9fd0ff" stroke-width="2" marker-end="url(#ahw)"/>
+      <text x="430" y="24" fill="#9fd0ff" font-family="DM Sans, sans-serif" font-size="11" font-weight="600">WIND</text>
+
+      <!-- water -->
+      <rect x="0" y="70" width="680" height="300" fill="url(#sea)"/>
+      <!-- surface waves -->
+      <path d="M0,70 Q20,62 40,70 T80,70 T120,70 T160,70 T200,70 T240,70 T280,70 T320,70 T360,70 T400,70 T440,70 T480,70 T520,70 T560,70 T600,70 T640,70 T680,70" fill="none" stroke="#bfe0ff" stroke-width="2.5"/>
+      <text x="20" y="92" fill="#bfe0ff" font-family="DM Sans, sans-serif" font-size="11" font-weight="600">WAVES · Hs, period, direction</text>
+
+      <!-- depth-resolved current arrows (strongest near surface) -->
+      <line x1="40" y1="120" x2="250" y2="120" stroke="url(#cur)" stroke-width="6" marker-end="url(#ah)"/>
+      <line x1="40" y1="170" x2="220" y2="170" stroke="url(#cur)" stroke-width="5" marker-end="url(#ah)"/>
+      <line x1="40" y1="220" x2="185" y2="220" stroke="url(#cur)" stroke-width="4" marker-end="url(#ah)"/>
+      <line x1="40" y1="275" x2="150" y2="275" stroke="url(#cur)" stroke-width="3" marker-end="url(#ah)"/>
+      <line x1="40" y1="325" x2="120" y2="325" stroke="url(#cur)" stroke-width="2.5" marker-end="url(#ah)"/>
+      <text x="300" y="160" fill="#7fe7dd" font-family="DM Sans, sans-serif" font-size="12" font-weight="700">OCEAN CURRENT</text>
+      <text x="300" y="178" fill="#9fe9e1" font-family="DM Sans, sans-serif" font-size="10.5">depth-resolved · 3.0 km · tidal-aware</text>
+
+      <!-- vessel -->
+      <g>
+        <rect x="455" y="52" width="120" height="20" rx="3" fill="#e8eef5"/>
+        <path d="M455,72 L575,72 L560,86 L470,86 Z" fill="#cdd9e6"/>
+        <rect x="500" y="30" width="6" height="24" fill="#9fb3c8"/>
+        <line x1="503" y1="33" x2="540" y2="120" stroke="#f4b73d" stroke-width="2.5"/>
+        <text x="455" y="46" fill="#dbe7f3" font-family="DM Sans, sans-serif" font-size="10.5" font-weight="600">DP cable-lay / construction vessel</text>
+      </g>
+
+      <!-- cable catenary to touchdown -->
+      <path d="M540,120 C520,210 470,300 430,352" fill="none" stroke="#f4b73d" stroke-width="3"/>
+      <text x="548" y="250" fill="#f8cd76" font-family="DM Sans, sans-serif" font-size="10.5">lay catenary —</text>
+      <text x="548" y="265" fill="#f8cd76" font-family="DM Sans, sans-serif" font-size="10.5">bent &amp; loaded by current</text>
+      <circle cx="430" cy="352" r="5" fill="#f4b73d"/>
+      <text x="360" y="345" fill="#f8cd76" font-family="DM Sans, sans-serif" font-size="10.5" text-anchor="end">touchdown point shifts ↓</text>
+
+      <!-- ROV -->
+      <g>
+        <rect x="250" y="300" width="34" height="22" rx="3" fill="#1f3b57" stroke="#7fe7dd" stroke-width="1.5"/>
+        <rect x="246" y="304" width="4" height="14" fill="#7fe7dd"/>
+        <rect x="284" y="304" width="4" height="14" fill="#7fe7dd"/>
+        <text x="267" y="296" fill="#9fe9e1" font-family="DM Sans, sans-serif" font-size="10" text-anchor="middle" font-weight="600">ROV</text>
+      </g>
+
+      <!-- seabed -->
+      <path d="M0,370 L680,370 L680,430 L0,430 Z" fill="#3b3326"/>
+      <path d="M0,370 Q120,360 240,372 T480,368 T680,374 L680,378 L0,378 Z" fill="#4a4030"/>
+      <!-- buried cable + exposed (scour) section -->
+      <path d="M0,392 L300,392" stroke="#f4b73d" stroke-width="3" stroke-dasharray="2 3"/>
+      <path d="M300,392 Q360,384 430,392" stroke="#f4b73d" stroke-width="3"/>
+      <path d="M430,392 L680,392" stroke="#f4b73d" stroke-width="3" stroke-dasharray="2 3"/>
+      <text x="300" y="416" fill="#d8c9a6" font-family="DM Sans, sans-serif" font-size="10.5" text-anchor="middle">seabed scour under strong current exposes the cable</text>
+    </svg>
+  </div>
+  <p class="viz-caption">The same current field that slows a transit also bends the lay catenary, shifts the touchdown, loads the ROV and the DP thrusters, and — on the seabed — drives the scour that exposes cables. Standard current products miss most of this fine structure. <b>Our model is built to resolve it.</b></p>
+
+  <!-- The data gap -->
+  <div class="section-label">The data gap</div>
+  <h2 class="section-title">Wind and wave forecasting is mature. Ocean-current forecasting hasn't reached the same standard — until now.</h2>
+  <p class="body-text">Wind models run at near-operational accuracy; wave models follow from wind. But surface currents are a different problem: eddies are roughly <b>ten times smaller</b> than atmospheric storms (≈100 km vs ≈1,000 km), and there are far fewer ocean measurements to anchor the models. The result is positioning errors of <b>tens of nautical miles</b> — enough to flip a routing or work-window decision.</p>
+  <div class="problem-box">
+    <p>In Amphitrite's survey of ship captains, <span class="stat-inline">70% rated ocean-current forecasts "average" or "poor"</span> — against just <span class="stat-inline">4% for wind</span>. The two leading operational models (EU Copernicus and US NOAA) routinely disagree on the location and strength of the same current vein on the same day. Misplacing a vein by 30–50 nm changes the decision entirely.</p>
+  </div>
+
+  <!-- How we get the data -->
+  <div class="section-label"><img src="https://api.amphitrite.fr/docs/rotating_logo.gif" alt="">How we get the data — and why it's more accurate</div>
+  <h2 class="section-title">One operational current layer, fused from satellites and validated against the ocean itself.</h2>
+  <div class="data-steps">
+    <div class="step"><div class="step-num">1</div><div class="step-text"><b>We start from observation, not just simulation.</b> Satellite altimetry (including the new SWOT mission), infrared sea-surface temperature, and chlorophyll imagery — fused with <b>100,000+ independent in-situ drifter measurements</b> across the North Atlantic and off South Africa.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text">That feeds <b>HIRES-CURRENTS</b>, our proprietary deep-learning current model. It resolves the mesoscale eddies, current veins, and tidal signatures that numerical models miss — at <b>3.0 km resolution, hourly, tidal-aware</b>, with a 14-day forecast horizon and global coverage (60°S–65°N).</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text"><b>Wind and waves are included</b> — we are not a single-variable shop. We also run active research into wave–current coupling, which gives more realistic wave characteristics inside current-affected areas than wave models alone.</div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-text"><b>You consume it where you work:</b> the <b>Ocean Bulletin</b> platform for day-to-day planning, or the <b>MetOcean API</b> (GPX, CSV, JSON, XML) into your VMS, navigation, and project-planning tools — hindcast and forecast from one unified source.</div></div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card"><div class="stat-num">37%</div><div class="stat-lbl">forecasts "excellent" (&lt;15° error) vs 23% for EU/US models</div></div>
+    <div class="stat-card"><div class="stat-num">76%</div><div class="stat-lbl">good-or-excellent (&lt;45°) vs 52% for EU operational model</div></div>
+    <div class="stat-card"><div class="stat-num">8%</div><div class="stat-lbl">materially wrong (&gt;90°) vs 24% EU / 21% US</div></div>
+  </div>
+  <p class="body-text" style="font-size:13px;color:#64748b;">Independently benchmarked against drifter measurements — not against our own training data. HIRES-CURRENTS produces <b>~60% more "excellent" forecasts</b> and cuts wrong forecasts by 2–3×. On a trans-Mediterranean voyage it tracked the real, vessel-measured current impact (<b>r = 0.79</b>) where Mercator did not (r = 0.31); against ship and drifter data it predicts current direction correctly <b>80%+ of the time vs under 60%</b> for Mercator, GOFS, and MFS — and holds <b>~85% correct at T+1, ~70% at T+7</b>.</p>
+
+  <div class="divider"></div>
+
+  <!-- Where it fits offshore -->
+  <div class="section-label">Where it fits</div>
+  <h2 class="section-title">Where it fits into offshore &amp; subsea operations.</h2>
+  <div class="benefits-list">
+    <div class="benefit-row"><div class="benefit-dot"></div><div><div class="benefit-title">Route-to-site planning &amp; mobilisation</div><div class="benefit-desc">Plan transit and arrival against wind, waves, and 3.0 km currents — so the vessel arrives on time and in workable condition, not just departs on time.</div></div></div>
+    <div class="benefit-row"><div class="benefit-dot"></div><div><div class="benefit-title">Workability windows (DSV, crane &amp; construction vessels)</div><div class="benefit-desc">Go/no-go decisions depend on wave height, period, and current speed together. Get accurate windows days in advance — not wind-only estimates.</div></div></div>
+    <div class="benefit-row"><div class="benefit-dot"></div><div><div class="benefit-title">DP-sensitive operations</div><div class="benefit-desc">Current is a primary environmental load on station-keeping. Accurate site-current data reduces thruster demand, sharpens DP capability planning, and extends operable windows in tidal and eddy-rich areas.</div></div></div>
+    <div class="benefit-row"><div class="benefit-dot"></div><div><div class="benefit-title">Cable lay, burial &amp; subsea installation</div><div class="benefit-desc">Currents bend the catenary, shift the touchdown, and load the product during lay — and drive seabed scour that later exposes cable. Forecast currents along the whole route at 3.0 km, not just at waypoints.</div></div></div>
+    <div class="benefit-row"><div class="benefit-dot"></div><div><div class="benefit-title">ROV &amp; diving operations</div><div class="benefit-desc">ROV flying, tether management, and diver safety all fight the current. Better current forecasts mean better go/no-go and fewer aborted dives.</div></div></div>
+    <div class="benefit-row"><div class="benefit-dot"></div><div><div class="benefit-title">Survey &amp; geophysics</div><div class="benefit-desc">Tow-fish, AUV and sensor performance and survey-line planning depend on current. Undetected currents cause re-runs and lost survey days.</div></div></div>
+    <div class="benefit-row"><div class="benefit-dot"></div><div><div class="benefit-title">Heavy lift, tow &amp; rig-move planning</div><div class="benefit-desc">Loaded semi-sub and jacket tows are highly sensitive to current forces across the hull and towline. Forecast along the entire tow corridor, not just endpoints.</div></div></div>
+    <div class="benefit-row"><div class="benefit-dot"></div><div><div class="benefit-title">Offshore wind installation</div><div class="benefit-desc">Jack-up and DP installation spreads live and die by workability. Tighter combined wind/wave/current windows reduce standby and weather downtime.</div></div></div>
+  </div>
+
+  <!-- Operational roles chips -->
+  <div class="chips-wrap">
+    <span class="chip">Marine &amp; ops superintendents</span>
+    <span class="chip">DP &amp; bridge teams</span>
+    <span class="chip">Project &amp; mobilisation managers</span>
+    <span class="chip">Survey &amp; geoscience leads</span>
+    <span class="chip">Tow &amp; marine warranty</span>
+    <span class="chip">Tenders &amp; bid engineering</span>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Vessel model -->
+  <div class="section-label"><img src="https://api.amphitrite.fr/docs/rotating_logo.gif" alt="">Custom vessel model</div>
+  <h2 class="section-title">A model of your specific vessel — for the most accurate route-to-site and tow planning.</h2>
+  <p class="body-text">Generic vessel-type assumptions introduce systematic routing error. A custom model learns how <b>your</b> vessel responds to every combination of wind angle, wave direction, and current — trained on your own AIS and onboard-sensor history (position, STW, SOG, heading, COG; roll/pitch, hull dimensions, power curves). The output is a <b>performance polar</b>: speed gain or loss at every angle and sea state — and on custom-trained models we reach <b>under 5% MAPE</b>.</p>
+
+  <div class="viz" style="background:#0a2747;">
+    <svg viewBox="0 0 680 300" role="img" aria-label="Vessel performance polar showing speed loss by relative angle and sea state">
+      <defs>
+        <radialGradient id="pol" cx="20%" cy="100%" r="120%">
+          <stop offset="0" stop-color="#22c55e"/>
+          <stop offset="0.45" stop-color="#f59e0b"/>
+          <stop offset="1" stop-color="#ef4444"/>
+        </radialGradient>
+      </defs>
+      <text x="40" y="34" fill="#cfe3fb" font-family="DM Sans, sans-serif" font-size="12" font-weight="700">PERFORMANCE POLAR · HIRES-CURRENTS 3 km</text>
+      <text x="40" y="52" fill="#9fb8d4" font-family="DM Sans, sans-serif" font-size="10.5">speed change (kn) at each relative wind / wave / current angle</text>
+      <!-- polar half -->
+      <g transform="translate(150,250)">
+        <path d="M0,0 A170,170 0 0 1 340,0 Z" fill="url(#pol)" opacity="0.85"/>
+        <path d="M0,0 A120,120 0 0 1 240,0" fill="none" stroke="#0a2747" stroke-width="1.5" opacity="0.5"/>
+        <path d="M0,0 A70,70 0 0 1 140,0" fill="none" stroke="#0a2747" stroke-width="1.5" opacity="0.5"/>
+        <line x1="0" y1="0" x2="340" y2="0" stroke="#0a2747" stroke-width="1.5" opacity="0.5"/>
+        <line x1="170" y1="0" x2="170" y2="-170" stroke="#0a2747" stroke-width="1.5" opacity="0.5"/>
+        <text x="-4" y="16" fill="#bfe0ff" font-family="DM Sans, sans-serif" font-size="11" text-anchor="middle">0° head</text>
+        <text x="170" y="-178" fill="#bfe0ff" font-family="DM Sans, sans-serif" font-size="11" text-anchor="middle">90° beam</text>
+        <text x="344" y="16" fill="#bfe0ff" font-family="DM Sans, sans-serif" font-size="11" text-anchor="middle">180° following</text>
+      </g>
+      <!-- legend -->
+      <g transform="translate(540,90)">
+        <rect x="0" y="0" width="14" height="14" rx="2" fill="#ef4444"/><text x="20" y="11" fill="#cfe3fb" font-family="DM Sans, sans-serif" font-size="11">speed loss (head)</text>
+        <rect x="0" y="24" width="14" height="14" rx="2" fill="#f59e0b"/><text x="20" y="35" fill="#cfe3fb" font-family="DM Sans, sans-serif" font-size="11">neutral (beam)</text>
+        <rect x="0" y="48" width="14" height="14" rx="2" fill="#22c55e"/><text x="20" y="59" fill="#cfe3fb" font-family="DM Sans, sans-serif" font-size="11">speed gain (following)</text>
+        <text x="0" y="92" fill="#7fb0e6" font-family="DM Sans, sans-serif" font-size="10.5">&lt; 5% MAPE on</text>
+        <text x="0" y="108" fill="#7fb0e6" font-family="DM Sans, sans-serif" font-size="10.5">custom-trained models</text>
+      </g>
+    </svg>
+  </div>
+  <p class="viz-caption">Head seas and adverse currents cost speed (red); following seas and favourable currents add it (green). For offshore work that means realistic transit ETAs, honest tow-speed planning, and current-aware fuel and emissions estimates — trained from your vessel's own data.</p>
+
+  <div class="divider"></div>
+
+  <!-- Case studies -->
+  <div class="section-label">Voyage studies · outcomes validated</div>
+  <h2 class="section-title-lg">Proven on real offshore voyages.</h2>
+  <p class="body-text">Every figure below is cross-referenced against AIS data — speed over ground, speed through water, and fuel consumption checked against HIRES-CURRENTS predictions.</p>
+
+  <div class="case-grid">
+    <div class="case-card hero-case">
+      <div class="case-header">
+        <span class="case-badge val">✓ AIS-validated</span>
+        <div>
+          <div class="case-title">North Atlantic Gulf Stream transit — pipelay vessel</div>
+          <div class="case-route">Pensacola (US) → Stavanger (Norway) · May–June 2025 · 160 m vessel</div>
+        </div>
+      </div>
+      <div class="case-stats">
+        <span class="case-stat">+2.7 kn for 3 days — no extra fuel</span>
+        <span class="case-stat">8–9% fuel &amp; CO₂ saved</span>
+        <span class="case-stat">85–95 t CO₂</span>
+        <span class="case-stat">~€28,800 saved</span>
+        <span class="case-stat">just 6 waypoints</span>
+      </div>
+      <div class="case-desc">An <b>offshore pipelay vessel</b> set for 14.3 kn hit a peak 18.8 kn over ground by surfing the Gulf Stream — the difference came entirely from the current, not extra engine power, and the measured SOG-STW matched the HIRES-CURRENTS prediction. Half a day faster at the same burn. Combined with standard wind/wave routing: <b>up to 10–15% total fuel savings</b> on a trans-Atlantic crossing.</div>
+      <div class="case-source">Source: Amphitrite white paper, April 2026 (AIS-validated).</div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-header">
+        <span class="case-badge val">✓ AIS-validated</span>
+        <div>
+          <div class="case-title">Coastal short-sea routing — Ro-Ro vessel</div>
+          <div class="case-route">Tangier (Morocco) → Tunis · November 2023</div>
+        </div>
+      </div>
+      <div class="case-stats">
+        <span class="case-stat">+0.6 kn mean SOG</span>
+        <span class="case-stat">&gt; 1 hour saved</span>
+        <span class="case-stat">up to 4% fuel</span>
+      </div>
+      <div class="case-desc">The standard route ran into counter-current coastal eddies along the Algerian coast. A slight northward adjustment — provided <b>24 hours in advance</b> — avoided the eddies entirely. This is exactly the fine-scale, coastal/approach detail that matters most for offshore route-to-site.</div>
+      <div class="case-source">Source: Amphitrite white paper, April 2026 (AIS-validated).</div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-header">
+        <span class="case-badge">Model validation</span>
+        <div>
+          <div class="case-title">Accuracy vs the models the industry uses today</div>
+          <div class="case-route">Drifter + CMA CGM vessel data · Mediterranean</div>
+        </div>
+      </div>
+      <div class="case-stats">
+        <span class="case-stat">80%+ direction accuracy</span>
+        <span class="case-stat">vs &lt;60% Mercator / GOFS / MFS</span>
+        <span class="case-stat">4× fewer wrong/inaccurate</span>
+      </div>
+      <div class="case-desc">Benchmarked against independent drifters and high-frequency vessel sensor data, HIRES-CURRENTS predicts current direction correctly over 80% of the time, where the standard operational models stay under 60% — and it holds its skill into the forecast horizon where numerical models degrade fastest.</div>
+      <div class="case-source">Source: Moschos et al., "Towards Optimal Ocean Routing," HullPIC'24 &amp; Amphitrite white paper.</div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-header">
+        <span class="case-badge">1-year analysis</span>
+        <div>
+          <div class="case-title">The cost of undetected adverse currents</div>
+          <div class="case-route">Port Said → Tangier-Med · 2,750 TEU feeder · 2022</div>
+        </div>
+      </div>
+      <div class="case-stats">
+        <span class="case-stat">€2,300–3,800 extra fuel / voyage</span>
+        <span class="case-stat">12–20 t extra CO₂ / voyage</span>
+      </div>
+      <div class="case-desc">A full year of operations shows adverse currents — invisible to standard routing tools — generating systematic fuel over-consumption to hold ETA. The same dynamic quietly inflates cost and standby on repeated offshore corridors and route-to-site legs.</div>
+      <div class="case-source">Source: Amphitrite white paper, April 2026.</div>
+    </div>
+  </div>
+
+  <!-- Defence credibility -->
+  <div class="defence">
+    <div class="defence-label">Trusted where current accuracy is mission-critical</div>
+    <div class="defence-title">If NATO relies on our currents below the surface, your survey, cable, and tow can rely on them too.</div>
+    <div class="defence-text">Amphitrite's ocean-current intelligence is used in <b>defence and naval operations — including NATO and the French and Canadian navies</b> — where sub-surface and submarine operations demand precise, high-resolution current data. It is independent proof that our current model performs where the margin for error is smallest. The same data layer drives your offshore route-to-site and workability decisions.</div>
+    <div class="defence-flags">
+      <span>NATO</span><span>French Navy</span><span>Canadian Navy</span><span>Sub-surface current intelligence</span>
+    </div>
+  </div>
+
+  <!-- White paper -->
+  <a class="wp-box" href="https://bit.ly/4930s9X" target="_blank" rel="noopener">
+    <div class="wp-icon">📄</div>
+    <div>
+      <div class="wp-title">Amphitrite white paper — April 2026</div>
+      <div class="wp-text">HIRES-CURRENTS validation, AIS-validated case studies, and accuracy benchmarks vs EU/US models.</div>
+    </div>
+  </a>
+
+  <!-- Honest positioning -->
+  <div class="section-label">Where we fit in the stack</div>
+  <h2 class="section-title">We make the current picture better upstream — so the rest of your stack works better.</h2>
+  <p class="body-text">We are honest about our lane. Amphitrite is <b>current-aware planning before the operation</b>: mobilisation, route timing, transit, and site approach. We are <b>not</b> a live on-asset sensor, a DP control system, or an engineering workability desk — those sit closest to the active operation. By getting the current picture right <b>before</b> execution, we make local monitoring and asset-specific decisions more effective. Wave–current coupling is active research, and we'll always tell you what's productised versus what's developing.</p>
+
+  <div class="divider"></div>
+
+  <!-- Ocean Bulletin CTA -->
+  <div class="ob-cta">
+    <img src="https://api.amphitrite.fr/docs/rotating_logo.gif" alt="">
+    <div class="ob-cta-label">The Ocean Bulletin platform</div>
+    <div class="ob-cta-title">See it on your own route-to-site.</div>
+    <div class="ob-cta-text">Plan an actual transit or campaign leg with 14-day wind, wave, and 3.0 km current data — your ports, your dates, your vessel. See how Amphitrite compares to the standard forecast on your passage.</div>
+    <a href="https://bulletin.amphitrite.fr/" target="_blank" rel="noopener">Open Ocean Bulletin →</a>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section-label">Common questions</div>
+  <h2 class="section-title">Practical answers for offshore teams.</h2>
+  <div class="faq-list">
+    <div class="faq-item"><div class="faq-q">Do we still need our metocean / weather-routing provider alongside this?<span class="faq-toggle">+</span></div><div class="faq-a"><p>Ocean Bulletin works alongside your existing metocean service as a high-resolution current layer — or as a standalone planning tool. Most teams use it to sharpen decisions their routing and ops people already make, especially on crossings and approaches where current variability is highest and standard models are weakest.</p></div></div>
+    <div class="faq-item"><div class="faq-q">Is this only relevant for shipping?<span class="faq-toggle">+</span></div><div class="faq-a"><p>No — active users include offshore construction (Boskalis, Heerema), dredging and marine contracting (Van Oord), subsea and cable lay (Orange Marine), defence and naval operations (NATO), research vessels, and superyachts. Anywhere ocean currents, waves, or wind drive an operational decision.</p></div></div>
+    <div class="faq-item"><div class="faq-q">Can it integrate with our existing systems?<span class="faq-toggle">+</span></div><div class="faq-a"><p>Yes. The MetOcean API delivers data in GPX, CSV, XML, JSON and more — compatible with major navigation systems, VMS platforms, and voyage/project-planning tools. Pull data for any set of waypoints and timestamps in a single API call.</p></div></div>
+    <div class="faq-item"><div class="faq-q">What areas are covered — including offshore and coastal?<span class="faq-toggle">+</span></div><div class="faq-a"><p>Global ocean coverage (60°S–65°N), with high-resolution tidal layers for the Strait of Gibraltar (1/45°) and the English Channel (AMM15, 1.5 km), plus bathymetry and sea-surface temperature globally.</p></div></div>
+    <div class="faq-item"><div class="faq-q">How do we start — is there a pilot option?<span class="faq-toggle">+</span></div><div class="faq-a"><p>Yes. A vessel profile and route-to-site study is the standard starting point: we build a custom performance model for a specific vessel and validate the data against your own voyage history, then prove value on a chosen route, corridor, or campaign. Get in touch to scope it.</p></div></div>
+    <div class="faq-item"><div class="faq-q">Is this live on-site monitoring?<span class="faq-toggle">+</span></div><div class="faq-a"><p>No — and we won't pretend otherwise. We improve the current picture <em>upstream</em>, for planning and route-to-site. Live sea-state monitoring and asset-specific execution sit downstream; we make them more effective by getting you there better prepared.</p></div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Next step -->
+  <div class="section-label">Next step</div>
+  <h2 class="section-title-lg">Book a working session.</h2>
+  <p class="body-text">30 minutes with the Amphitrite team. Bring a vessel, a route-to-site, a tow, or a campaign — we'll show you exactly how the data performs on it.</p>
+  <a class="cta-primary" href="https://cal.com/noah-amphitrite/meeting" target="_blank" rel="noopener">Book a working session</a>
+  <div class="cal-row">
+    <a class="cal-btn" href="https://bulletin.amphitrite.fr/" target="_blank" rel="noopener">🌊 Open Ocean Bulletin</a>
+    <a class="cal-btn" href="https://bit.ly/4930s9X" target="_blank" rel="noopener">📄 Read the white paper</a>
+  </div>
+
+  <footer>
+    <div class="foot-contact"><b>Noah</b> — <a href="tel:+31612184055">+31 612 18 4055</a> · <a href="mailto:noah@amphitrite.fr">noah@amphitrite.fr</a></div>
+    <a class="foot-logo logo-bar" href="https://www.amphitrite.fr/" target="_blank" rel="noopener" style="border:none;padding:0;margin:0;">
+      <img src="https://api.amphitrite.fr/docs/rotating_logo.gif" alt="Amphitrite">
+      <div>
+        <div class="logo-name">Amphitrite</div>
+        <div class="logo-sub">Ocean Data Intelligence · amphitrite.fr · bulletin.amphitrite.fr</div>
+      </div>
+    </a>
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(function(q){
+    q.addEventListener('click', function(){
+      var a = q.nextElementSibling;
+      var open = a.classList.toggle('open');
+      q.querySelector('.faq-toggle').textContent = open ? '−' : '+';
+    });
+  });
+</script>
+</body>
+</html>
