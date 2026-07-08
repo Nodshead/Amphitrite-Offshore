@@ -1,109 +1,169 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Amphitrite – Offshore, Subsea &amp; Marine Construction</title>
 <meta name="description" content="High-resolution ocean intelligence for offshore operations. Wind, waves, and the most accurate ocean currents at 3.0 km — for route-to-site planning, workability windows, DP operations, cable lay, and survey.">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.replace('no-js','js');</script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: #f8f9fb; font-family: 'DM Sans', sans-serif; color: #1a1a2e; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: #f8f9fb;
+    background-image:
+      radial-gradient(1100px 520px at 85% -8%, rgba(24,95,165,0.07), transparent 60%),
+      radial-gradient(900px 460px at -12% 18%, rgba(55,194,182,0.05), transparent 60%);
+    background-repeat: no-repeat;
+    font-family: 'DM Sans', sans-serif; color: #1a1a2e; -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: #185FA5; color: #fff; }
   .page { max-width: 680px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
   a { color: inherit; }
+  a:focus-visible, .faq-q:focus-visible { outline: 2px solid #185FA5; outline-offset: 2px; border-radius: 6px; }
 
-  /* Logo bar */
+  /* ---------- Scroll reveals (JS-gated: no JS = everything visible) ---------- */
+  html.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s cubic-bezier(.22,1,.36,1); transition-delay: var(--d, 0s); will-change: opacity, transform; }
+  html.js .reveal.in-view { opacity: 1; transform: none; }
+
+  /* ---------- Logo bar ---------- */
   .logo-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 1.6rem; padding-bottom: 1.2rem; border-bottom: 1px solid #e2e8f0; text-decoration: none; }
-  .logo-bar img { height: 36px; transition: transform 0.2s; }
-  .logo-bar:hover img { transform: scale(1.06); }
+  .logo-bar img { height: 36px; transition: transform 0.25s ease; }
+  .logo-bar:hover img { transform: scale(1.07) rotate(-3deg); }
   .logo-name { font-size: 16px; font-weight: 600; color: #0f172a; }
   .logo-sub { font-size: 12px; color: #64748b; margin-top: 1px; }
-  .logo-link-tag { margin-left: auto; font-size: 11px; font-weight: 500; color: #185FA5; background: #E6F1FB; padding: 5px 11px; border-radius: 20px; white-space: nowrap; }
+  .logo-link-tag { margin-left: auto; font-size: 11px; font-weight: 500; color: #185FA5; background: #E6F1FB; padding: 5px 11px; border-radius: 20px; white-space: nowrap; transition: background .25s ease, color .25s ease; }
+  .logo-bar:hover .logo-link-tag { background: #185FA5; color: #fff; }
 
-  /* Context / explainer strip */
-  .context { background: linear-gradient(135deg, #0A1E3D 0%, #103a6b 100%); border-radius: 14px; padding: 24px 22px; margin-bottom: 1.6rem; position: relative; overflow: hidden; }
-  .context::after { content: ''; position: absolute; right: -40px; top: -40px; width: 180px; height: 180px; background: radial-gradient(circle, rgba(74,144,217,0.25), transparent 70%); }
+  /* ---------- Context / explainer strip — the animated ocean panel ---------- */
+  .context { background: linear-gradient(150deg, #081832 0%, #0A1E3D 45%, #113e73 100%); border-radius: 16px; padding: 26px 24px; margin-bottom: 1.7rem; position: relative; overflow: hidden; box-shadow: 0 18px 44px rgba(10,30,61,0.28); }
+  .context::after { content: ''; position: absolute; right: -40px; top: -40px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(74,144,217,0.28), transparent 70%); }
+  .context-sea { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  .flowline { fill: none; stroke: #37c2b6; stroke-width: 1.4; stroke-linecap: round; opacity: .28; stroke-dasharray: 16 130; animation: flowdash 10s linear infinite; }
+  .flowline.f2 { stroke: #5b9bd5; animation-duration: 13s; animation-delay: -4s; opacity: .22; }
+  .flowline.f3 { animation-duration: 16s; animation-delay: -8s; opacity: .18; }
+  .flowline.f4 { stroke: #7dd3fc; animation-duration: 11.5s; animation-delay: -2s; opacity: .22; }
+  @keyframes flowdash { to { stroke-dashoffset: -438; } }
+  .mote { fill: #7fe7dd; opacity: 0; animation: drift 15s linear infinite; }
+  .mote.m2 { animation-duration: 19s; animation-delay: -6s; fill: #9fd0ff; }
+  .mote.m3 { animation-duration: 23s; animation-delay: -12s; }
+  .mote.m4 { animation-duration: 17s; animation-delay: -9s; fill: #9fd0ff; }
+  @keyframes drift {
+    0% { transform: translateX(0); opacity: 0; }
+    8% { opacity: .7; }
+    92% { opacity: .7; }
+    100% { transform: translateX(700px); opacity: 0; }
+  }
   .context-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; position: relative; z-index: 1; }
   .context-head img { height: 26px; }
   .context-head span { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #7dd3fc; }
-  .context-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 500; color: #fff; line-height: 1.35; margin-bottom: 10px; position: relative; z-index: 1; }
+  .context-title { font-family: 'Playfair Display', serif; font-size: clamp(1.2rem, 2.6vw + .55rem, 1.4rem); font-weight: 500; color: #fff; line-height: 1.35; margin-bottom: 10px; position: relative; z-index: 1; }
   .context-text { font-size: 13.5px; line-height: 1.65; color: #c3d6ee; position: relative; z-index: 1; }
   .context-text b { color: #fff; font-weight: 500; }
   .context-flow { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; position: relative; z-index: 1; }
-  .context-flow span { font-size: 11.5px; font-weight: 500; color: #cfe3fb; background: rgba(74,144,217,0.18); border: 1px solid rgba(125,211,252,0.25); padding: 5px 11px; border-radius: 20px; }
+  .context-flow span { font-size: 11.5px; font-weight: 500; color: #cfe3fb; background: rgba(74,144,217,0.18); border: 1px solid rgba(125,211,252,0.25); padding: 5px 11px; border-radius: 20px; backdrop-filter: blur(2px); }
+  /* entrance for the top panel — runs once on load */
+  html.js .context-head, html.js .context-title, html.js .context-text, html.js .context-flow { animation: rise .7s cubic-bezier(.22,1,.36,1) both; }
+  html.js .context-title { animation-delay: .12s; }
+  html.js .context-text { animation-delay: .24s; }
+  html.js .context-flow { animation-delay: .38s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 
-  /* Hero */
+  /* ---------- Hero ---------- */
   .hero-tag { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #185FA5; background: #E6F1FB; padding: 4px 10px; border-radius: 20px; margin-bottom: 1rem; }
-  .hero-title { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 400; line-height: 1.25; margin-bottom: 0.75rem; color: #0f172a; }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(1.7rem, 4.2vw + .6rem, 2.1rem); font-weight: 400; line-height: 1.25; margin-bottom: 0.75rem; color: #0f172a; }
+  .hero-title em { font-style: normal; background: linear-gradient(120deg, #185FA5, #2b9d92); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .hero-sub { font-size: 15px; color: #64748b; line-height: 1.6; margin-bottom: 1.5rem; }
+  .hero-sub b { color: #334155; }
+  html.js .hero-tag { animation: rise .7s cubic-bezier(.22,1,.36,1) .45s both; }
+  html.js .hero-title { animation: rise .7s cubic-bezier(.22,1,.36,1) .55s both; }
+  html.js .hero-sub { animation: rise .7s cubic-bezier(.22,1,.36,1) .65s both; }
+  html.js .hero-ctas { animation: rise .7s cubic-bezier(.22,1,.36,1) .75s both; }
 
-  .divider { height: 1px; background: #e2e8f0; margin: 2rem 0; }
+  .divider { height: 1px; background: linear-gradient(to right, transparent, #d5e2f0 20%, #d5e2f0 80%, transparent); margin: 2rem 0; }
 
-  /* Section labels */
+  /* ---------- Section labels ---------- */
   .section-label { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #94a3b8; margin-bottom: 0.8rem; }
   .section-label img { height: 20px; }
-  .section-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 400; color: #0f172a; margin-bottom: 0.5rem; line-height: 1.35; }
-  .section-title-lg { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 600; color: #0f172a; margin-bottom: 0.6rem; line-height: 1.25; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, #dbe6f2, transparent); }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.15rem, 2vw + .6rem, 1.25rem); font-weight: 400; color: #0f172a; margin-bottom: 0.5rem; line-height: 1.35; }
+  .section-title-lg { font-family: 'Playfair Display', serif; font-size: clamp(1.4rem, 3vw + .6rem, 1.7rem); font-weight: 600; color: #0f172a; margin-bottom: 0.6rem; line-height: 1.25; }
   .body-text { font-size: 14px; line-height: 1.7; color: #334155; margin-bottom: 0.75rem; }
   .body-text b { color: #0f172a; font-weight: 600; }
 
-  /* Partners ticker */
+  /* ---------- Partners ticker ---------- */
   .partners-section { margin: 1.5rem 0; }
   .partners-label { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #94a3b8; text-align: center; margin-bottom: 1rem; }
-  .partners-wrap { overflow: hidden; position: relative; }
-  .partners-wrap::before, .partners-wrap::after { content: ''; position: absolute; top: 0; bottom: 0; width: 48px; z-index: 1; pointer-events: none; }
-  .partners-wrap::before { left: 0; background: linear-gradient(to right, #f8f9fb, transparent); }
-  .partners-wrap::after { right: 0; background: linear-gradient(to left, #f8f9fb, transparent); }
-  .partners-track { display: flex; align-items: center; width: max-content; animation: scroll-partners 24s linear infinite; }
+  .partners-wrap { overflow: hidden; position: relative; -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent); }
+  .partners-track { display: flex; align-items: center; width: max-content; animation: scroll-partners 26s linear infinite; }
   .partners-track:hover { animation-play-state: paused; }
-  .partner-item { font-size: 14px; font-weight: 600; color: #334155; letter-spacing: 0.04em; padding: 0 1.6rem; white-space: nowrap; }
+  .partner-item { font-size: 14px; font-weight: 600; color: #334155; letter-spacing: 0.04em; padding: 0 1.6rem; white-space: nowrap; transition: color .25s ease; }
+  .partner-item:hover { color: #185FA5; }
   .partner-sep { color: #cbd5e1; font-size: 10px; flex-shrink: 0; }
   @keyframes scroll-partners { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-  /* Steps */
+  /* ---------- Steps ---------- */
   .data-steps { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1rem; }
-  .step { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; border: 1px solid #e2e8f0; border-radius: 10px; background: #fff; }
+  .step { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; border: 1px solid #e2e8f0; border-radius: 10px; background: #fff; transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease; }
+  .step:hover { border-color: #B5D4F4; box-shadow: 0 6px 18px rgba(13,33,69,0.07); transform: translateY(-1px); }
   .step-num { width: 22px; height: 22px; border-radius: 50%; background: #E6F1FB; color: #185FA5; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
   .step-text { font-size: 14px; line-height: 1.6; color: #1a1a2e; }
   .step-text b { font-weight: 600; }
 
-  /* Benefits */
+  /* ---------- Benefits ---------- */
   .benefits-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1rem; }
-  .benefit-row { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; border: 1px solid #e2e8f0; border-radius: 10px; background: #fff; }
+  .benefit-row { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; border: 1px solid #e2e8f0; border-radius: 10px; background: #fff; position: relative; overflow: hidden; transition: border-color .25s ease, box-shadow .25s ease; }
+  .benefit-row::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, #185FA5, #37c2b6); transform: scaleY(0); transform-origin: top; transition: transform .3s ease; }
+  .benefit-row:hover { border-color: #B5D4F4; box-shadow: 0 6px 18px rgba(13,33,69,0.07); }
+  .benefit-row:hover::before { transform: scaleY(1); }
   .benefit-dot { width: 8px; height: 8px; border-radius: 50%; background: #185FA5; flex-shrink: 0; margin-top: 6px; }
   .benefit-title { font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 4px; }
   .benefit-desc { font-size: 13px; color: #64748b; line-height: 1.55; }
 
-  /* Profile / highlight boxes */
-  .profile-box { padding: 20px 22px; border: 1px solid #B5D4F4; border-radius: 10px; background: #E6F1FB; margin-bottom: 10px; }
-  .profile-box p { font-size: 14px; line-height: 1.65; color: #0C447C; }
-  .profile-box b { font-weight: 600; }
-  .profile-stat { display: inline-block; margin-top: 12px; font-size: 12px; font-weight: 500; background: #185FA5; color: #fff; padding: 5px 14px; border-radius: 20px; }
-
-  /* Problem box */
-  .problem-box { padding: 16px 18px; border-left: 3px solid #185FA5; border-radius: 0 8px 8px 0; background: #f1f5f9; margin: 1rem 0; }
+  /* ---------- Problem box ---------- */
+  .problem-box { padding: 16px 18px; border-left: 3px solid #185FA5; border-radius: 0 8px 8px 0; background: linear-gradient(120deg, #f1f5f9, #eef4fa); margin: 1rem 0; }
   .problem-box p { font-size: 14px; line-height: 1.65; color: #475569; }
   .stat-inline { font-weight: 600; color: #185FA5; }
 
-  /* Role chips */
+  /* ---------- Role chips ---------- */
   .chips-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1rem; }
-  .chip { font-size: 12px; font-weight: 500; color: #0C447C; background: #E6F1FB; border: 1px solid #B5D4F4; padding: 5px 12px; border-radius: 20px; }
+  .chip { font-size: 12px; font-weight: 500; color: #0C447C; background: #E6F1FB; border: 1px solid #B5D4F4; padding: 5px 12px; border-radius: 20px; transition: background .25s ease, color .25s ease, transform .25s ease; }
+  .chip:hover { background: #185FA5; border-color: #185FA5; color: #fff; transform: translateY(-1px); }
 
-  /* Stat grid */
+  /* ---------- Stat grid ---------- */
   .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 1rem 0; }
-  .stat-card { border: 1px solid #e2e8f0; border-radius: 10px; background: #fff; padding: 14px 12px; text-align: center; }
-  .stat-num { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; color: #185FA5; line-height: 1; }
+  .stat-card { border: 1px solid #e2e8f0; border-radius: 10px; background: #fff; padding: 14px 12px; text-align: center; transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease; }
+  .stat-card:hover { border-color: #B5D4F4; box-shadow: 0 8px 20px rgba(13,33,69,0.08); transform: translateY(-2px); }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; line-height: 1; background: linear-gradient(120deg, #185FA5, #2b9d92); -webkit-background-clip: text; background-clip: text; color: transparent; font-variant-numeric: tabular-nums; }
   .stat-lbl { font-size: 11px; color: #64748b; margin-top: 6px; line-height: 1.4; }
 
-  /* Visual panels */
-  .viz { border-radius: 16px; overflow: hidden; background: #07223f; box-shadow: 0 8px 30px rgba(13,33,69,0.12); margin: 0.5rem 0 0.7rem; }
+  /* ---------- Visual panels ---------- */
+  .viz { border-radius: 16px; overflow: hidden; background: #07223f; box-shadow: 0 14px 38px rgba(13,33,69,0.18); margin: 0.5rem 0 0.7rem; }
   .viz svg { display: block; width: 100%; height: auto; }
   .viz-caption { font-size: 12px; color: #64748b; line-height: 1.55; margin: 0 2px 1.4rem; font-style: italic; }
 
-  /* Case study cards */
+  /* cross-section SVG life */
+  .sea-wave { animation: waveShift 5s linear infinite; }
+  @keyframes waveShift { from { transform: translateX(0); } to { transform: translateX(-40px); } }
+  .cflow { stroke: #7fe7dd; stroke-linecap: round; fill: none; stroke-dasharray: 6 16; animation: cflowdash 2.6s linear infinite; }
+  @keyframes cflowdash { to { stroke-dashoffset: -44; } }
+  .windflow { stroke-dasharray: 5 12; animation: cflowdash 1.8s linear infinite; }
+  .rov-g { animation: rovbob 4.5s ease-in-out infinite; }
+  @keyframes rovbob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+  .td-ping { transform-box: fill-box; transform-origin: center; animation: ping 2.8s ease-out infinite; }
+  @keyframes ping { 0% { transform: scale(.5); opacity: .8; } 70% { transform: scale(2.6); opacity: 0; } 100% { transform: scale(2.6); opacity: 0; } }
+
+  /* polar sweep-in */
+  .polar-fill { transform-box: fill-box; transform-origin: 50% 100%; }
+  html.js .viz-polar .polar-fill { transform: scale(.55); opacity: 0; transition: transform 1s cubic-bezier(.22,1,.36,1) .15s, opacity .8s ease .15s; }
+  html.js .viz-polar.in-view .polar-fill { transform: scale(1); opacity: 1; }
+
+  /* ---------- Case study cards ---------- */
   .case-grid { display: flex; flex-direction: column; gap: 14px; margin-bottom: 1rem; }
-  .case-card { padding: 18px 20px; border: 1px solid #e2e8f0; border-radius: 10px; background: #fff; }
-  .case-card.hero-case { border-color: #B5D4F4; background: linear-gradient(180deg,#f4f9ff,#fff); }
+  .case-card { padding: 18px 20px; border: 1px solid #e2e8f0; border-radius: 12px; background: #fff; transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease; }
+  .case-card:hover { border-color: #B5D4F4; box-shadow: 0 10px 26px rgba(13,33,69,0.09); transform: translateY(-2px); }
+  .case-card.hero-case { border: 1px solid transparent; background: linear-gradient(180deg, #f4f9ff, #fff) padding-box, linear-gradient(135deg, #B5D4F4, #7fd6cd) border-box; }
   .case-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 4px; }
   .case-badge { font-size: 11px; font-weight: 600; background: #E6F1FB; color: #185FA5; padding: 3px 10px; border-radius: 20px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
   .case-badge.val { background: #dcfce7; color: #15803d; }
@@ -114,62 +174,81 @@
   .case-desc { font-size: 13px; color: #64748b; line-height: 1.6; margin-top: 10px; }
   .case-source { font-size: 11px; color: #94a3b8; margin-top: 8px; }
 
-  /* Defence credibility */
-  .defence { background: linear-gradient(135deg,#0b1f33 0%,#10314f 100%); border-radius: 14px; padding: 24px 22px; margin: 1.2rem 0; position: relative; overflow: hidden; }
-  .defence::after { content:''; position:absolute; right:-30px; bottom:-40px; width:160px; height:160px; background: radial-gradient(circle, rgba(125,211,252,0.18), transparent 70%); }
+  /* ---------- Defence credibility ---------- */
+  .defence { background: linear-gradient(135deg, #0b1f33 0%, #10314f 100%); border-radius: 14px; padding: 24px 22px; margin: 1.2rem 0; position: relative; overflow: hidden; box-shadow: 0 16px 40px rgba(11,31,51,0.25); }
+  .defence::after { content: ''; position: absolute; right: -30px; bottom: -40px; width: 160px; height: 160px; background: radial-gradient(circle, rgba(125,211,252,0.18), transparent 70%); }
+  .sonar { position: absolute; right: 24px; top: 24px; width: 12px; height: 12px; }
+  .sonar::before, .sonar::after { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 1px solid rgba(125,211,252,0.7); animation: sonar 3.2s ease-out infinite; }
+  .sonar::after { animation-delay: 1.6s; }
+  @keyframes sonar { 0% { transform: scale(1); opacity: .8; } 100% { transform: scale(5); opacity: 0; } }
   .defence-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #7dd3fc; margin-bottom: 8px; }
-  .defence-title { font-family:'Playfair Display',serif; font-size: 1.2rem; color:#fff; line-height:1.35; margin-bottom: 10px; position:relative; z-index:1; }
-  .defence-text { font-size: 13.5px; line-height: 1.65; color: #c3d6ee; position: relative; z-index:1; }
+  .defence-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: #fff; line-height: 1.35; margin-bottom: 10px; position: relative; z-index: 1; }
+  .defence-text { font-size: 13.5px; line-height: 1.65; color: #c3d6ee; position: relative; z-index: 1; }
   .defence-text b { color: #fff; font-weight: 600; }
-  .defence-flags { display:flex; gap:7px; flex-wrap:wrap; margin-top:14px; position:relative; z-index:1; }
-  .defence-flags span { font-size:11.5px; font-weight:500; color:#cfe3fb; background: rgba(74,144,217,0.18); border:1px solid rgba(125,211,252,0.25); padding:5px 11px; border-radius:20px; }
+  .defence-flags { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 14px; position: relative; z-index: 1; }
+  .defence-flags span { font-size: 11.5px; font-weight: 500; color: #cfe3fb; background: rgba(74,144,217,0.18); border: 1px solid rgba(125,211,252,0.25); padding: 5px 11px; border-radius: 20px; }
 
-  /* FAQ */
+  /* ---------- FAQ ---------- */
   .faq-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 1rem; }
-  .faq-item { border: 1px solid #e2e8f0; border-radius: 10px; background: #fff; overflow: hidden; }
-  .faq-q { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; cursor: pointer; font-size: 14px; font-weight: 500; color: #0f172a; gap: 12px; }
-  .faq-toggle { width: 20px; height: 20px; border-radius: 50%; background: #E6F1FB; color: #185FA5; font-size: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .faq-a { padding: 0 16px; max-height: 0; overflow: hidden; transition: max-height 0.25s ease, padding 0.25s ease; }
-  .faq-a.open { max-height: 360px; padding: 0 16px 14px; }
+  .faq-item { border: 1px solid #e2e8f0; border-radius: 10px; background: #fff; overflow: hidden; transition: border-color .25s ease; }
+  .faq-item.open { border-color: #B5D4F4; }
+  .faq-q { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; cursor: pointer; font-size: 14px; font-weight: 500; color: #0f172a; gap: 12px; background: none; border: none; width: 100%; text-align: left; font-family: inherit; }
+  .faq-toggle { width: 20px; height: 20px; border-radius: 50%; background: #E6F1FB; color: #185FA5; font-size: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: transform .3s cubic-bezier(.22,1,.36,1), background .25s ease, color .25s ease; }
+  .faq-item.open .faq-toggle { transform: rotate(45deg); background: #185FA5; color: #fff; }
+  .faq-a { padding: 0 16px; max-height: 0; overflow: hidden; transition: max-height 0.3s cubic-bezier(.22,1,.36,1), padding 0.3s ease; }
+  .faq-item.open .faq-a { max-height: 360px; padding: 0 16px 14px; }
   .faq-a p { font-size: 13px; color: #64748b; line-height: 1.65; }
 
-  /* White paper box */
-  .wp-box { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border: 1px solid #e2e8f0; border-radius: 10px; background: #fff; margin-bottom: 1.5rem; text-decoration: none; }
+  /* ---------- White paper box ---------- */
+  .wp-box { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border: 1px solid #e2e8f0; border-radius: 10px; background: #fff; margin-bottom: 1.5rem; text-decoration: none; transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease; }
+  .wp-box:hover { border-color: #B5D4F4; box-shadow: 0 8px 20px rgba(13,33,69,0.08); transform: translateY(-1px); }
   .wp-icon { width: 36px; height: 36px; border-radius: 8px; background: #E6F1FB; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 18px; }
   .wp-title { font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 2px; }
   .wp-text { font-size: 13px; color: #64748b; }
 
-  /* CTAs */
-  .cta-primary { display: block; width: 100%; padding: 14px; border-radius: 10px; background: #185FA5; color: #fff; font-size: 15px; font-weight: 600; text-align: center; text-decoration: none; margin-bottom: 10px; border: none; cursor: pointer; }
-  .cta-primary:hover { background: #0C447C; }
-  .cta-secondary { display: block; width: 100%; padding: 13px; border-radius: 10px; border: 1px solid #cbd5e1; background: #fff; color: #1a1a2e; font-size: 14px; text-align: center; text-decoration: none; margin-bottom: 10px; }
-  .cta-secondary:hover { background: #f8f9fb; }
+  /* ---------- CTAs ---------- */
+  .cta-primary { display: block; width: 100%; padding: 14px; border-radius: 10px; background: linear-gradient(120deg, #185FA5, #1b6cb8); color: #fff; font-size: 15px; font-weight: 600; text-align: center; text-decoration: none; margin-bottom: 10px; border: none; cursor: pointer; position: relative; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease; }
+  .cta-primary::after { content: ''; position: absolute; top: 0; left: -70%; width: 40%; height: 100%; background: linear-gradient(105deg, transparent, rgba(255,255,255,0.35), transparent); transform: skewX(-20deg); transition: left .6s ease; }
+  .cta-primary:hover { transform: translateY(-1px); box-shadow: 0 12px 26px rgba(24,95,165,0.35); }
+  .cta-primary:hover::after { left: 130%; }
+  .cta-secondary { display: block; width: 100%; padding: 13px; border-radius: 10px; border: 1px solid #cbd5e1; background: #fff; color: #1a1a2e; font-size: 14px; text-align: center; text-decoration: none; margin-bottom: 10px; transition: border-color .25s ease, background .25s ease, transform .25s ease; }
+  .cta-secondary:hover { background: #f8f9fb; border-color: #B5D4F4; transform: translateY(-1px); }
   .cal-row { display: flex; gap: 10px; margin-bottom: 10px; }
-  .cal-btn { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 13px; border-radius: 10px; border: 1px solid #cbd5e1; background: #fff; color: #1a1a2e; font-size: 13px; text-decoration: none; cursor: pointer; }
-  .cal-btn:hover { background: #f8f9fb; }
+  .cal-btn { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 13px; border-radius: 10px; border: 1px solid #cbd5e1; background: #fff; color: #1a1a2e; font-size: 13px; text-decoration: none; cursor: pointer; transition: border-color .25s ease, background .25s ease, transform .25s ease; }
+  .cal-btn:hover { background: #f8f9fb; border-color: #B5D4F4; transform: translateY(-1px); }
 
-  /* Ocean Bulletin CTA */
-  .ob-cta { background: #0A1E3D; border-radius: 12px; padding: 28px 24px; margin: 1.5rem 0; text-align: center; }
-  .ob-cta img { height: 30px; margin-bottom: 10px; }
-  .ob-cta-label { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #7098C8; margin-bottom: 0.6rem; }
-  .ob-cta-title { font-family:'Playfair Display',serif; font-size: 1.3rem; color:#fff; margin-bottom: 0.5rem; }
-  .ob-cta-text { font-size: 13.5px; color:#c3d6ee; line-height:1.6; margin-bottom: 1rem; }
-  .ob-cta a { display:inline-block; background:#5b9bd5; color:#fff; font-weight:600; font-size:14px; padding:11px 22px; border-radius:9px; text-decoration:none; }
-  .ob-cta a:hover { background:#4a8ac4; }
+  /* ---------- Ocean Bulletin CTA ---------- */
+  .ob-cta { background: linear-gradient(150deg, #081832, #0A1E3D 55%, #0f3560); border-radius: 14px; padding: 28px 24px; margin: 1.5rem 0; text-align: center; position: relative; overflow: hidden; box-shadow: 0 16px 40px rgba(10,30,61,0.25); }
+  .ob-cta::before { content: ''; position: absolute; left: 50%; top: -60px; width: 320px; height: 200px; transform: translateX(-50%); background: radial-gradient(ellipse, rgba(91,155,213,0.22), transparent 70%); }
+  .ob-cta img { height: 30px; margin-bottom: 10px; position: relative; }
+  .ob-cta-label { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #7098C8; margin-bottom: 0.6rem; position: relative; }
+  .ob-cta-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: #fff; margin-bottom: 0.5rem; position: relative; }
+  .ob-cta-text { font-size: 13.5px; color: #c3d6ee; line-height: 1.6; margin-bottom: 1rem; position: relative; }
+  .ob-cta a { display: inline-block; background: #5b9bd5; color: #fff; font-weight: 600; font-size: 14px; padding: 11px 22px; border-radius: 9px; text-decoration: none; position: relative; transition: background .25s ease, transform .25s ease, box-shadow .25s ease; }
+  .ob-cta a:hover { background: #4a8ac4; transform: translateY(-1px); box-shadow: 0 10px 22px rgba(91,155,213,0.35); }
 
-  /* Footer */
+  /* ---------- Footer ---------- */
   footer { border-top: 1px solid #e2e8f0; margin-top: 2rem; padding-top: 1.4rem; }
-  .foot-contact { font-size: 14px; color:#334155; margin-bottom: 1rem; }
-  .foot-contact b { color:#0f172a; }
-  .foot-contact a { color:#185FA5; text-decoration:none; }
-  .foot-logo { display:flex; align-items:center; gap:10px; }
+  .foot-contact { font-size: 14px; color: #334155; margin-bottom: 1rem; }
+  .foot-contact b { color: #0f172a; }
+  .foot-contact a { color: #185FA5; text-decoration: none; }
+  .foot-contact a:hover { text-decoration: underline; }
+  .foot-logo { display: flex; align-items: center; gap: 10px; }
   .foot-logo img { height: 28px; }
   .foot-logo .logo-name { font-size: 14px; }
 
   @media (max-width: 560px) {
-    .hero-title { font-size: 1.7rem; }
     .stat-grid { grid-template-columns: 1fr 1fr; }
     .cal-row { flex-direction: column; }
+    .context { padding: 22px 18px; }
+  }
+
+  /* ---------- Reduced motion: everything settles, nothing moves ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
+    html.js .reveal { opacity: 1; transform: none; }
+    html.js .viz-polar .polar-fill { transform: none; opacity: 1; }
   }
 </style>
 </head>
@@ -186,8 +265,18 @@
     <span class="logo-link-tag">amphitrite.fr →</span>
   </a>
 
-  <!-- Context strip -->
+  <!-- Context strip — animated ocean panel -->
   <div class="context">
+    <svg class="context-sea" viewBox="0 0 680 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <path class="flowline"    d="M-30,50 C110,30 240,72 380,52 S620,30 710,56"/>
+      <path class="flowline f2" d="M-30,110 C130,92 260,132 400,112 S640,92 710,116"/>
+      <path class="flowline f3" d="M-30,170 C120,152 250,190 390,172 S630,150 710,176"/>
+      <path class="flowline f4" d="M-30,215 C140,200 270,232 410,216 S650,198 710,220"/>
+      <circle class="mote"    cx="-10" cy="70"  r="2"/>
+      <circle class="mote m2" cx="-10" cy="130" r="1.6"/>
+      <circle class="mote m3" cx="-10" cy="42"  r="1.4"/>
+      <circle class="mote m4" cx="-10" cy="190" r="1.8"/>
+    </svg>
     <div class="context-head">
       <img src="https://api.amphitrite.fr/docs/rotating_logo.gif" alt="">
       <span>Start here</span>
@@ -205,13 +294,15 @@
 
   <!-- Hero -->
   <span class="hero-tag">Offshore · Subsea · Marine Construction</span>
-  <h1 class="hero-title">High-resolution ocean intelligence for offshore operations.</h1>
+  <h1 class="hero-title">High-resolution ocean intelligence for <em>offshore operations</em>.</h1>
   <p class="hero-sub">Wind, waves, and the most accurate ocean currents available — <b>3.0 km resolution, hourly, tidal-aware, 14-day horizon</b>. One integrated picture for route-to-site planning, workability windows, DP-sensitive operations, cable lay, tow planning, and survey.</p>
-  <a class="cta-primary" href="https://cal.com/noah-amphitrite/meeting" target="_blank" rel="noopener">Book a working session</a>
-  <a class="cta-secondary" href="https://bulletin.amphitrite.fr/" target="_blank" rel="noopener">Open Ocean Bulletin — plan a route now →</a>
+  <div class="hero-ctas">
+    <a class="cta-primary" href="https://cal.com/noah-amphitrite/meeting" target="_blank" rel="noopener">Book a working session</a>
+    <a class="cta-secondary" href="https://bulletin.amphitrite.fr/" target="_blank" rel="noopener">Open Ocean Bulletin — plan a route now →</a>
+  </div>
 
   <!-- Partners -->
-  <div class="partners-section">
+  <div class="partners-section reveal">
     <div class="partners-label">Trusted by</div>
     <div class="partners-wrap">
       <div class="partners-track">
@@ -238,11 +329,13 @@
   <div class="divider"></div>
 
   <!-- Underwater visual -->
-  <div class="section-label"><img src="https://api.amphitrite.fr/docs/rotating_logo.gif" alt="">Why currents decide the operation</div>
-  <h2 class="section-title">It is not just the surface. Currents run through the whole water column — and through your whole operation.</h2>
-  <p class="body-text">Wind and waves are felt at the surface. <b>Currents act on everything below it</b> — the lay catenary, the touchdown point, the ROV, the diver, the DP system, and the seabed itself. Get the current picture wrong and the work window, the touchdown, and the burial all get harder.</p>
+  <div class="reveal">
+    <div class="section-label"><img src="https://api.amphitrite.fr/docs/rotating_logo.gif" alt="">Why currents decide the operation</div>
+    <h2 class="section-title">It is not just the surface. Currents run through the whole water column — and through your whole operation.</h2>
+    <p class="body-text">Wind and waves are felt at the surface. <b>Currents act on everything below it</b> — the lay catenary, the touchdown point, the ROV, the diver, the DP system, and the seabed itself. Get the current picture wrong and the work window, the touchdown, and the burial all get harder.</p>
+  </div>
 
-  <div class="viz">
+  <div class="viz reveal">
     <!-- Cross-section: surface vessel + cable catenary + ROV + seabed scour + depth-resolved currents -->
     <svg viewBox="0 0 680 430" role="img" aria-label="Cross-section of an offshore operation showing how ocean currents act through the water column">
       <defs>
@@ -250,7 +343,7 @@
           <stop offset="0" stop-color="#0d3a64"/>
           <stop offset="1" stop-color="#061a31"/>
         </linearGradient>
-        <linearGradient id="cur" x1="0" y1="0" x2="1" y2="0">
+        <linearGradient id="cur" gradientUnits="userSpaceOnUse" x1="40" y1="0" x2="250" y2="0">
           <stop offset="0" stop-color="#37c2b6" stop-opacity="0.15"/>
           <stop offset="1" stop-color="#37c2b6" stop-opacity="0.9"/>
         </linearGradient>
@@ -260,18 +353,23 @@
         <marker id="ahw" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
           <path d="M0,0 L7,3 L0,6 Z" fill="#9fd0ff"/>
         </marker>
+        <clipPath id="seaclip"><rect x="0" y="0" width="680" height="430"/></clipPath>
       </defs>
 
       <!-- sky -->
       <rect x="0" y="0" width="680" height="70" fill="#0a2747"/>
       <!-- wind -->
-      <line x1="430" y1="34" x2="560" y2="34" stroke="#9fd0ff" stroke-width="2" marker-end="url(#ahw)"/>
-      <text x="430" y="24" fill="#9fd0ff" font-family="DM Sans, sans-serif" font-size="11" font-weight="600">WIND</text>
+      <line class="windflow" x1="280" y1="34" x2="400" y2="34" stroke="#9fd0ff" stroke-width="2" marker-end="url(#ahw)"/>
+      <text x="280" y="24" fill="#9fd0ff" font-family="DM Sans, sans-serif" font-size="11" font-weight="600">WIND</text>
 
       <!-- water -->
       <rect x="0" y="70" width="680" height="300" fill="url(#sea)"/>
-      <!-- surface waves -->
-      <path d="M0,70 Q20,62 40,70 T80,70 T120,70 T160,70 T200,70 T240,70 T280,70 T320,70 T360,70 T400,70 T440,70 T480,70 T520,70 T560,70 T600,70 T640,70 T680,70" fill="none" stroke="#bfe0ff" stroke-width="2.5"/>
+      <!-- surface waves (animated, clipped to frame) -->
+      <g clip-path="url(#seaclip)">
+        <g class="sea-wave">
+          <path d="M0,70 Q20,62 40,70 T80,70 T120,70 T160,70 T200,70 T240,70 T280,70 T320,70 T360,70 T400,70 T440,70 T480,70 T520,70 T560,70 T600,70 T640,70 T680,70 T720,70 T760,70" fill="none" stroke="#bfe0ff" stroke-width="2.5"/>
+        </g>
+      </g>
       <text x="20" y="92" fill="#bfe0ff" font-family="DM Sans, sans-serif" font-size="11" font-weight="600">WAVES · Hs, period, direction</text>
 
       <!-- depth-resolved current arrows (strongest near surface) -->
@@ -280,6 +378,12 @@
       <line x1="40" y1="220" x2="185" y2="220" stroke="url(#cur)" stroke-width="4" marker-end="url(#ah)"/>
       <line x1="40" y1="275" x2="150" y2="275" stroke="url(#cur)" stroke-width="3" marker-end="url(#ah)"/>
       <line x1="40" y1="325" x2="120" y2="325" stroke="url(#cur)" stroke-width="2.5" marker-end="url(#ah)"/>
+      <!-- flowing dashes over the arrows -->
+      <line class="cflow" x1="40" y1="120" x2="240" y2="120" stroke-width="3" opacity="0.7"/>
+      <line class="cflow" x1="40" y1="170" x2="210" y2="170" stroke-width="2.5" opacity="0.6" style="animation-delay:-.6s"/>
+      <line class="cflow" x1="40" y1="220" x2="176" y2="220" stroke-width="2" opacity="0.5" style="animation-delay:-1.2s"/>
+      <line class="cflow" x1="40" y1="275" x2="142" y2="275" stroke-width="1.6" opacity="0.45" style="animation-delay:-1.8s"/>
+      <line class="cflow" x1="40" y1="325" x2="113" y2="325" stroke-width="1.4" opacity="0.4" style="animation-delay:-2.2s"/>
       <text x="300" y="160" fill="#7fe7dd" font-family="DM Sans, sans-serif" font-size="12" font-weight="700">OCEAN CURRENT</text>
       <text x="300" y="178" fill="#9fe9e1" font-family="DM Sans, sans-serif" font-size="10.5">depth-resolved · 3.0 km · tidal-aware</text>
 
@@ -289,18 +393,19 @@
         <path d="M455,72 L575,72 L560,86 L470,86 Z" fill="#cdd9e6"/>
         <rect x="500" y="30" width="6" height="24" fill="#9fb3c8"/>
         <line x1="503" y1="33" x2="540" y2="120" stroke="#f4b73d" stroke-width="2.5"/>
-        <text x="455" y="46" fill="#dbe7f3" font-family="DM Sans, sans-serif" font-size="10.5" font-weight="600">DP cable-lay / construction vessel</text>
+        <text x="575" y="24" text-anchor="end" fill="#dbe7f3" font-family="DM Sans, sans-serif" font-size="10.5" font-weight="600">DP cable-lay / construction vessel</text>
       </g>
 
       <!-- cable catenary to touchdown -->
       <path d="M540,120 C520,210 470,300 430,352" fill="none" stroke="#f4b73d" stroke-width="3"/>
       <text x="548" y="250" fill="#f8cd76" font-family="DM Sans, sans-serif" font-size="10.5">lay catenary —</text>
       <text x="548" y="265" fill="#f8cd76" font-family="DM Sans, sans-serif" font-size="10.5">bent &amp; loaded by current</text>
+      <circle class="td-ping" cx="430" cy="352" r="5" fill="none" stroke="#f4b73d" stroke-width="1.5"/>
       <circle cx="430" cy="352" r="5" fill="#f4b73d"/>
       <text x="360" y="345" fill="#f8cd76" font-family="DM Sans, sans-serif" font-size="10.5" text-anchor="end">touchdown point shifts ↓</text>
 
       <!-- ROV -->
-      <g>
+      <g class="rov-g">
         <rect x="250" y="300" width="34" height="22" rx="3" fill="#1f3b57" stroke="#7fe7dd" stroke-width="1.5"/>
         <rect x="246" y="304" width="4" height="14" fill="#7fe7dd"/>
         <rect x="284" y="304" width="4" height="14" fill="#7fe7dd"/>
@@ -317,51 +422,57 @@
       <text x="300" y="416" fill="#d8c9a6" font-family="DM Sans, sans-serif" font-size="10.5" text-anchor="middle">seabed scour under strong current exposes the cable</text>
     </svg>
   </div>
-  <p class="viz-caption">The same current field that slows a transit also bends the lay catenary, shifts the touchdown, loads the ROV and the DP thrusters, and — on the seabed — drives the scour that exposes cables. Standard current products miss most of this fine structure. <b>Our model is built to resolve it.</b></p>
+  <p class="viz-caption reveal">The same current field that slows a transit also bends the lay catenary, shifts the touchdown, loads the ROV and the DP thrusters, and — on the seabed — drives the scour that exposes cables. Standard current products miss most of this fine structure. <b>Our model is built to resolve it.</b></p>
 
   <!-- The data gap -->
-  <div class="section-label">The data gap</div>
-  <h2 class="section-title">Wind and wave forecasting is mature. Ocean-current forecasting hasn't reached the same standard — until now.</h2>
-  <p class="body-text">Wind models run at near-operational accuracy; wave models follow from wind. But surface currents are a different problem: eddies are roughly <b>ten times smaller</b> than atmospheric storms (≈100 km vs ≈1,000 km), and there are far fewer ocean measurements to anchor the models. The result is positioning errors of <b>tens of nautical miles</b> — enough to flip a routing or work-window decision.</p>
-  <div class="problem-box">
-    <p>In Amphitrite's survey of ship captains, <span class="stat-inline">70% rated ocean-current forecasts "average" or "poor"</span> — against just <span class="stat-inline">4% for wind</span>. The two leading operational models (EU Copernicus and US NOAA) routinely disagree on the location and strength of the same current vein on the same day. Misplacing a vein by 30–50 nm changes the decision entirely.</p>
+  <div class="reveal">
+    <div class="section-label">The data gap</div>
+    <h2 class="section-title">Wind and wave forecasting is mature. Ocean-current forecasting hasn't reached the same standard — until now.</h2>
+    <p class="body-text">Wind models run at near-operational accuracy; wave models follow from wind. But surface currents are a different problem: eddies are roughly <b>ten times smaller</b> than atmospheric storms (≈100 km vs ≈1,000 km), and there are far fewer ocean measurements to anchor the models. The result is positioning errors of <b>tens of nautical miles</b> — enough to flip a routing or work-window decision.</p>
+    <div class="problem-box">
+      <p>In Amphitrite's survey of ship captains, <span class="stat-inline">70% rated ocean-current forecasts "average" or "poor"</span> — against just <span class="stat-inline">4% for wind</span>. The two leading operational models (EU Copernicus and US NOAA) routinely disagree on the location and strength of the same current vein on the same day. Misplacing a vein by 30–50 nm changes the decision entirely.</p>
+    </div>
   </div>
 
   <!-- How we get the data -->
-  <div class="section-label"><img src="https://api.amphitrite.fr/docs/rotating_logo.gif" alt="">How we get the data — and why it's more accurate</div>
-  <h2 class="section-title">One operational current layer, fused from satellites and validated against the ocean itself.</h2>
+  <div class="reveal">
+    <div class="section-label"><img src="https://api.amphitrite.fr/docs/rotating_logo.gif" alt="">How we get the data — and why it's more accurate</div>
+    <h2 class="section-title">One operational current layer, fused from satellites and validated against the ocean itself.</h2>
+  </div>
   <div class="data-steps">
-    <div class="step"><div class="step-num">1</div><div class="step-text"><b>We start from observation, not just simulation.</b> Satellite altimetry (including the new SWOT mission), infrared sea-surface temperature, and chlorophyll imagery — fused with <b>100,000+ independent in-situ drifter measurements</b> across the North Atlantic and off South Africa.</div></div>
-    <div class="step"><div class="step-num">2</div><div class="step-text">That feeds <b>HIRES-CURRENTS</b>, our proprietary deep-learning current model. It resolves the mesoscale eddies, current veins, and tidal signatures that numerical models miss — at <b>3.0 km resolution, hourly, tidal-aware</b>, with a 14-day forecast horizon and global coverage (60°S–65°N).</div></div>
-    <div class="step"><div class="step-num">3</div><div class="step-text"><b>Wind and waves are included</b> — we are not a single-variable shop. We also run active research into wave–current coupling, which gives more realistic wave characteristics inside current-affected areas than wave models alone.</div></div>
-    <div class="step"><div class="step-num">4</div><div class="step-text"><b>You consume it where you work:</b> the <b>Ocean Bulletin</b> platform for day-to-day planning, or the <b>MetOcean API</b> (GPX, CSV, JSON, XML) into your VMS, navigation, and project-planning tools — hindcast and forecast from one unified source.</div></div>
+    <div class="step reveal"><div class="step-num">1</div><div class="step-text"><b>We start from observation, not just simulation.</b> Satellite altimetry (including the new SWOT mission), infrared sea-surface temperature, and chlorophyll imagery — fused with <b>100,000+ independent in-situ drifter measurements</b> across the North Atlantic and off South Africa.</div></div>
+    <div class="step reveal" style="--d:.08s"><div class="step-num">2</div><div class="step-text">That feeds <b>HIRES-CURRENTS</b>, our proprietary deep-learning current model. It resolves the mesoscale eddies, current veins, and tidal signatures that numerical models miss — at <b>3.0 km resolution, hourly, tidal-aware</b>, with a 14-day forecast horizon and global coverage (60°S–65°N).</div></div>
+    <div class="step reveal" style="--d:.16s"><div class="step-num">3</div><div class="step-text"><b>Wind and waves are included</b> — we are not a single-variable shop. We also run active research into wave–current coupling, which gives more realistic wave characteristics inside current-affected areas than wave models alone.</div></div>
+    <div class="step reveal" style="--d:.24s"><div class="step-num">4</div><div class="step-text"><b>You consume it where you work:</b> the <b>Ocean Bulletin</b> platform for day-to-day planning, or the <b>MetOcean API</b> (GPX, CSV, JSON, XML) into your VMS, navigation, and project-planning tools — hindcast and forecast from one unified source.</div></div>
   </div>
 
   <div class="stat-grid">
-    <div class="stat-card"><div class="stat-num">37%</div><div class="stat-lbl">forecasts "excellent" (&lt;15° error) vs 23% for EU/US models</div></div>
-    <div class="stat-card"><div class="stat-num">76%</div><div class="stat-lbl">good-or-excellent (&lt;45°) vs 52% for EU operational model</div></div>
-    <div class="stat-card"><div class="stat-num">8%</div><div class="stat-lbl">materially wrong (&gt;90°) vs 24% EU / 21% US</div></div>
+    <div class="stat-card reveal"><div class="stat-num"><span data-count="37">37</span>%</div><div class="stat-lbl">forecasts "excellent" (&lt;15° error) vs 23% for EU/US models</div></div>
+    <div class="stat-card reveal" style="--d:.08s"><div class="stat-num"><span data-count="76">76</span>%</div><div class="stat-lbl">good-or-excellent (&lt;45°) vs 52% for EU operational model</div></div>
+    <div class="stat-card reveal" style="--d:.16s"><div class="stat-num"><span data-count="8">8</span>%</div><div class="stat-lbl">materially wrong (&gt;90°) vs 24% EU / 21% US</div></div>
   </div>
-  <p class="body-text" style="font-size:13px;color:#64748b;">Independently benchmarked against drifter measurements — not against our own training data. HIRES-CURRENTS produces <b>~60% more "excellent" forecasts</b> and cuts wrong forecasts by 2–3×. On a trans-Mediterranean voyage it tracked the real, vessel-measured current impact (<b>r = 0.79</b>) where Mercator did not (r = 0.31); against ship and drifter data it predicts current direction correctly <b>80%+ of the time vs under 60%</b> for Mercator, GOFS, and MFS — and holds <b>~85% correct at T+1, ~70% at T+7</b>.</p>
+  <p class="body-text reveal" style="font-size:13px;color:#64748b;">Independently benchmarked against drifter measurements — not against our own training data. HIRES-CURRENTS produces <b>~60% more "excellent" forecasts</b> and cuts wrong forecasts by 2–3×. On a trans-Mediterranean voyage it tracked the real, vessel-measured current impact (<b>r = 0.79</b>) where Mercator did not (r = 0.31); against ship and drifter data it predicts current direction correctly <b>80%+ of the time vs under 60%</b> for Mercator, GOFS, and MFS — and holds <b>~85% correct at T+1, ~70% at T+7</b>.</p>
 
   <div class="divider"></div>
 
   <!-- Where it fits offshore -->
-  <div class="section-label">Where it fits</div>
-  <h2 class="section-title">Where it fits into offshore &amp; subsea operations.</h2>
+  <div class="reveal">
+    <div class="section-label">Where it fits</div>
+    <h2 class="section-title">Where it fits into offshore &amp; subsea operations.</h2>
+  </div>
   <div class="benefits-list">
-    <div class="benefit-row"><div class="benefit-dot"></div><div><div class="benefit-title">Route-to-site planning &amp; mobilisation</div><div class="benefit-desc">Plan transit and arrival against wind, waves, and 3.0 km currents — so the vessel arrives on time and in workable condition, not just departs on time.</div></div></div>
-    <div class="benefit-row"><div class="benefit-dot"></div><div><div class="benefit-title">Workability windows (DSV, crane &amp; construction vessels)</div><div class="benefit-desc">Go/no-go decisions depend on wave height, period, and current speed together. Get accurate windows days in advance — not wind-only estimates.</div></div></div>
-    <div class="benefit-row"><div class="benefit-dot"></div><div><div class="benefit-title">DP-sensitive operations</div><div class="benefit-desc">Current is a primary environmental load on station-keeping. Accurate site-current data reduces thruster demand, sharpens DP capability planning, and extends operable windows in tidal and eddy-rich areas.</div></div></div>
-    <div class="benefit-row"><div class="benefit-dot"></div><div><div class="benefit-title">Cable lay, burial &amp; subsea installation</div><div class="benefit-desc">Currents bend the catenary, shift the touchdown, and load the product during lay — and drive seabed scour that later exposes cable. Forecast currents along the whole route at 3.0 km, not just at waypoints.</div></div></div>
-    <div class="benefit-row"><div class="benefit-dot"></div><div><div class="benefit-title">ROV &amp; diving operations</div><div class="benefit-desc">ROV flying, tether management, and diver safety all fight the current. Better current forecasts mean better go/no-go and fewer aborted dives.</div></div></div>
-    <div class="benefit-row"><div class="benefit-dot"></div><div><div class="benefit-title">Survey &amp; geophysics</div><div class="benefit-desc">Tow-fish, AUV and sensor performance and survey-line planning depend on current. Undetected currents cause re-runs and lost survey days.</div></div></div>
-    <div class="benefit-row"><div class="benefit-dot"></div><div><div class="benefit-title">Heavy lift, tow &amp; rig-move planning</div><div class="benefit-desc">Loaded semi-sub and jacket tows are highly sensitive to current forces across the hull and towline. Forecast along the entire tow corridor, not just endpoints.</div></div></div>
-    <div class="benefit-row"><div class="benefit-dot"></div><div><div class="benefit-title">Offshore wind installation</div><div class="benefit-desc">Jack-up and DP installation spreads live and die by workability. Tighter combined wind/wave/current windows reduce standby and weather downtime.</div></div></div>
+    <div class="benefit-row reveal"><div class="benefit-dot"></div><div><div class="benefit-title">Route-to-site planning &amp; mobilisation</div><div class="benefit-desc">Plan transit and arrival against wind, waves, and 3.0 km currents — so the vessel arrives on time and in workable condition, not just departs on time.</div></div></div>
+    <div class="benefit-row reveal" style="--d:.05s"><div class="benefit-dot"></div><div><div class="benefit-title">Workability windows (DSV, crane &amp; construction vessels)</div><div class="benefit-desc">Go/no-go decisions depend on wave height, period, and current speed together. Get accurate windows days in advance — not wind-only estimates.</div></div></div>
+    <div class="benefit-row reveal" style="--d:.1s"><div class="benefit-dot"></div><div><div class="benefit-title">DP-sensitive operations</div><div class="benefit-desc">Current is a primary environmental load on station-keeping. Accurate site-current data reduces thruster demand, sharpens DP capability planning, and extends operable windows in tidal and eddy-rich areas.</div></div></div>
+    <div class="benefit-row reveal" style="--d:.15s"><div class="benefit-dot"></div><div><div class="benefit-title">Cable lay, burial &amp; subsea installation</div><div class="benefit-desc">Currents bend the catenary, shift the touchdown, and load the product during lay — and drive seabed scour that later exposes cable. Forecast currents along the whole route at 3.0 km, not just at waypoints.</div></div></div>
+    <div class="benefit-row reveal" style="--d:.2s"><div class="benefit-dot"></div><div><div class="benefit-title">ROV &amp; diving operations</div><div class="benefit-desc">ROV flying, tether management, and diver safety all fight the current. Better current forecasts mean better go/no-go and fewer aborted dives.</div></div></div>
+    <div class="benefit-row reveal" style="--d:.25s"><div class="benefit-dot"></div><div><div class="benefit-title">Survey &amp; geophysics</div><div class="benefit-desc">Tow-fish, AUV and sensor performance and survey-line planning depend on current. Undetected currents cause re-runs and lost survey days.</div></div></div>
+    <div class="benefit-row reveal" style="--d:.3s"><div class="benefit-dot"></div><div><div class="benefit-title">Heavy lift, tow &amp; rig-move planning</div><div class="benefit-desc">Loaded semi-sub and jacket tows are highly sensitive to current forces across the hull and towline. Forecast along the entire tow corridor, not just endpoints.</div></div></div>
+    <div class="benefit-row reveal" style="--d:.35s"><div class="benefit-dot"></div><div><div class="benefit-title">Offshore wind installation</div><div class="benefit-desc">Jack-up and DP installation spreads live and die by workability. Tighter combined wind/wave/current windows reduce standby and weather downtime.</div></div></div>
   </div>
 
   <!-- Operational roles chips -->
-  <div class="chips-wrap">
+  <div class="chips-wrap reveal">
     <span class="chip">Marine &amp; ops superintendents</span>
     <span class="chip">DP &amp; bridge teams</span>
     <span class="chip">Project &amp; mobilisation managers</span>
@@ -373,14 +484,16 @@
   <div class="divider"></div>
 
   <!-- Vessel model -->
-  <div class="section-label"><img src="https://api.amphitrite.fr/docs/rotating_logo.gif" alt="">Custom vessel model</div>
-  <h2 class="section-title">A model of your specific vessel — for the most accurate route-to-site and tow planning.</h2>
-  <p class="body-text">Generic vessel-type assumptions introduce systematic routing error. A custom model learns how <b>your</b> vessel responds to every combination of wind angle, wave direction, and current — trained on your own AIS and onboard-sensor history (position, STW, SOG, heading, COG; roll/pitch, hull dimensions, power curves). The output is a <b>performance polar</b>: speed gain or loss at every angle and sea state — and on custom-trained models we reach <b>under 5% MAPE</b>.</p>
+  <div class="reveal">
+    <div class="section-label"><img src="https://api.amphitrite.fr/docs/rotating_logo.gif" alt="">Custom vessel model</div>
+    <h2 class="section-title">A model of your specific vessel — for the most accurate route-to-site and tow planning.</h2>
+    <p class="body-text">Generic vessel-type assumptions introduce systematic routing error. A custom model learns how <b>your</b> vessel responds to every combination of wind angle, wave direction, and current — trained on your own AIS and onboard-sensor history (position, STW, SOG, heading, COG; roll/pitch, hull dimensions, power curves). The output is a <b>performance polar</b>: speed gain or loss at every angle and sea state — and on custom-trained models we reach <b>under 5% MAPE</b>.</p>
+  </div>
 
-  <div class="viz" style="background:#0a2747;">
+  <div class="viz viz-polar reveal" style="background:#0a2747;">
     <svg viewBox="0 0 680 300" role="img" aria-label="Vessel performance polar showing speed loss by relative angle and sea state">
       <defs>
-        <radialGradient id="pol" cx="20%" cy="100%" r="120%">
+        <radialGradient id="pol" cx="82%" cy="100%" r="95%">
           <stop offset="0" stop-color="#22c55e"/>
           <stop offset="0.45" stop-color="#f59e0b"/>
           <stop offset="1" stop-color="#ef4444"/>
@@ -390,11 +503,13 @@
       <text x="40" y="52" fill="#9fb8d4" font-family="DM Sans, sans-serif" font-size="10.5">speed change (kn) at each relative wind / wave / current angle</text>
       <!-- polar half -->
       <g transform="translate(150,250)">
-        <path d="M0,0 A170,170 0 0 1 340,0 Z" fill="url(#pol)" opacity="0.85"/>
-        <path d="M0,0 A120,120 0 0 1 240,0" fill="none" stroke="#0a2747" stroke-width="1.5" opacity="0.5"/>
-        <path d="M0,0 A70,70 0 0 1 140,0" fill="none" stroke="#0a2747" stroke-width="1.5" opacity="0.5"/>
-        <line x1="0" y1="0" x2="340" y2="0" stroke="#0a2747" stroke-width="1.5" opacity="0.5"/>
-        <line x1="170" y1="0" x2="170" y2="-170" stroke="#0a2747" stroke-width="1.5" opacity="0.5"/>
+        <g class="polar-fill">
+          <path d="M0,0 A170,170 0 0 1 340,0 Z" fill="url(#pol)" opacity="0.85"/>
+          <path d="M0,0 A120,120 0 0 1 240,0" fill="none" stroke="#0a2747" stroke-width="1.5" opacity="0.5"/>
+          <path d="M0,0 A70,70 0 0 1 140,0" fill="none" stroke="#0a2747" stroke-width="1.5" opacity="0.5"/>
+          <line x1="0" y1="0" x2="340" y2="0" stroke="#0a2747" stroke-width="1.5" opacity="0.5"/>
+          <line x1="170" y1="0" x2="170" y2="-170" stroke="#0a2747" stroke-width="1.5" opacity="0.5"/>
+        </g>
         <text x="-4" y="16" fill="#bfe0ff" font-family="DM Sans, sans-serif" font-size="11" text-anchor="middle">0° head</text>
         <text x="170" y="-178" fill="#bfe0ff" font-family="DM Sans, sans-serif" font-size="11" text-anchor="middle">90° beam</text>
         <text x="344" y="16" fill="#bfe0ff" font-family="DM Sans, sans-serif" font-size="11" text-anchor="middle">180° following</text>
@@ -409,17 +524,19 @@
       </g>
     </svg>
   </div>
-  <p class="viz-caption">Head seas and adverse currents cost speed (red); following seas and favourable currents add it (green). For offshore work that means realistic transit ETAs, honest tow-speed planning, and current-aware fuel and emissions estimates — trained from your vessel's own data.</p>
+  <p class="viz-caption reveal">Head seas and adverse currents cost speed (red); following seas and favourable currents add it (green). For offshore work that means realistic transit ETAs, honest tow-speed planning, and current-aware fuel and emissions estimates — trained from your vessel's own data.</p>
 
   <div class="divider"></div>
 
   <!-- Case studies -->
-  <div class="section-label">Voyage studies · outcomes validated</div>
-  <h2 class="section-title-lg">Proven on real offshore voyages.</h2>
-  <p class="body-text">Every figure below is cross-referenced against AIS data — speed over ground, speed through water, and fuel consumption checked against HIRES-CURRENTS predictions.</p>
+  <div class="reveal">
+    <div class="section-label">Voyage studies · outcomes validated</div>
+    <h2 class="section-title-lg">Proven on real offshore voyages.</h2>
+    <p class="body-text">Every figure below is cross-referenced against AIS data — speed over ground, speed through water, and fuel consumption checked against HIRES-CURRENTS predictions.</p>
+  </div>
 
   <div class="case-grid">
-    <div class="case-card hero-case">
+    <div class="case-card hero-case reveal">
       <div class="case-header">
         <span class="case-badge val">✓ AIS-validated</span>
         <div>
@@ -438,7 +555,7 @@
       <div class="case-source">Source: Amphitrite white paper, April 2026 (AIS-validated).</div>
     </div>
 
-    <div class="case-card">
+    <div class="case-card reveal">
       <div class="case-header">
         <span class="case-badge val">✓ AIS-validated</span>
         <div>
@@ -455,7 +572,7 @@
       <div class="case-source">Source: Amphitrite white paper, April 2026 (AIS-validated).</div>
     </div>
 
-    <div class="case-card">
+    <div class="case-card reveal">
       <div class="case-header">
         <span class="case-badge">Model validation</span>
         <div>
@@ -472,7 +589,7 @@
       <div class="case-source">Source: Moschos et al., "Towards Optimal Ocean Routing," HullPIC'24 &amp; Amphitrite white paper.</div>
     </div>
 
-    <div class="case-card">
+    <div class="case-card reveal">
       <div class="case-header">
         <span class="case-badge">1-year analysis</span>
         <div>
@@ -490,7 +607,8 @@
   </div>
 
   <!-- Defence credibility -->
-  <div class="defence">
+  <div class="defence reveal">
+    <div class="sonar" aria-hidden="true"></div>
     <div class="defence-label">Trusted where current accuracy is mission-critical</div>
     <div class="defence-title">If NATO relies on our currents below the surface, your survey, cable, and tow can rely on them too.</div>
     <div class="defence-text">Amphitrite's ocean-current intelligence is used in <b>defence and naval operations — including NATO and the French and Canadian navies</b> — where sub-surface and submarine operations demand precise, high-resolution current data. It is independent proof that our current model performs where the margin for error is smallest. The same data layer drives your offshore route-to-site and workability decisions.</div>
@@ -500,7 +618,7 @@
   </div>
 
   <!-- White paper -->
-  <a class="wp-box" href="https://bit.ly/4930s9X" target="_blank" rel="noopener">
+  <a class="wp-box reveal" href="https://bit.ly/4930s9X" target="_blank" rel="noopener">
     <div class="wp-icon">📄</div>
     <div>
       <div class="wp-title">Amphitrite white paper — April 2026</div>
@@ -509,14 +627,16 @@
   </a>
 
   <!-- Honest positioning -->
-  <div class="section-label">Where we fit in the stack</div>
-  <h2 class="section-title">We make the current picture better upstream — so the rest of your stack works better.</h2>
-  <p class="body-text">We are honest about our lane. Amphitrite is <b>current-aware planning before the operation</b>: mobilisation, route timing, transit, and site approach. We are <b>not</b> a live on-asset sensor, a DP control system, or an engineering workability desk — those sit closest to the active operation. By getting the current picture right <b>before</b> execution, we make local monitoring and asset-specific decisions more effective. Wave–current coupling is active research, and we'll always tell you what's productised versus what's developing.</p>
+  <div class="reveal">
+    <div class="section-label">Where we fit in the stack</div>
+    <h2 class="section-title">We make the current picture better upstream — so the rest of your stack works better.</h2>
+    <p class="body-text">We are honest about our lane. Amphitrite is <b>current-aware planning before the operation</b>: mobilisation, route timing, transit, and site approach. We are <b>not</b> a live on-asset sensor, a DP control system, or an engineering workability desk — those sit closest to the active operation. By getting the current picture right <b>before</b> execution, we make local monitoring and asset-specific decisions more effective. Wave–current coupling is active research, and we'll always tell you what's productised versus what's developing.</p>
+  </div>
 
   <div class="divider"></div>
 
   <!-- Ocean Bulletin CTA -->
-  <div class="ob-cta">
+  <div class="ob-cta reveal">
     <img src="https://api.amphitrite.fr/docs/rotating_logo.gif" alt="">
     <div class="ob-cta-label">The Ocean Bulletin platform</div>
     <div class="ob-cta-title">See it on your own route-to-site.</div>
@@ -525,27 +645,31 @@
   </div>
 
   <!-- FAQ -->
-  <div class="section-label">Common questions</div>
-  <h2 class="section-title">Practical answers for offshore teams.</h2>
+  <div class="reveal">
+    <div class="section-label">Common questions</div>
+    <h2 class="section-title">Practical answers for offshore teams.</h2>
+  </div>
   <div class="faq-list">
-    <div class="faq-item"><div class="faq-q">Do we still need our metocean / weather-routing provider alongside this?<span class="faq-toggle">+</span></div><div class="faq-a"><p>Ocean Bulletin works alongside your existing metocean service as a high-resolution current layer — or as a standalone planning tool. Most teams use it to sharpen decisions their routing and ops people already make, especially on crossings and approaches where current variability is highest and standard models are weakest.</p></div></div>
-    <div class="faq-item"><div class="faq-q">Is this only relevant for shipping?<span class="faq-toggle">+</span></div><div class="faq-a"><p>No — active users include offshore construction (Boskalis, Heerema), dredging and marine contracting (Van Oord), subsea and cable lay (Orange Marine), defence and naval operations (NATO), research vessels, and superyachts. Anywhere ocean currents, waves, or wind drive an operational decision.</p></div></div>
-    <div class="faq-item"><div class="faq-q">Can it integrate with our existing systems?<span class="faq-toggle">+</span></div><div class="faq-a"><p>Yes. The MetOcean API delivers data in GPX, CSV, XML, JSON and more — compatible with major navigation systems, VMS platforms, and voyage/project-planning tools. Pull data for any set of waypoints and timestamps in a single API call.</p></div></div>
-    <div class="faq-item"><div class="faq-q">What areas are covered — including offshore and coastal?<span class="faq-toggle">+</span></div><div class="faq-a"><p>Global ocean coverage (60°S–65°N), with high-resolution tidal layers for the Strait of Gibraltar (1/45°) and the English Channel (AMM15, 1.5 km), plus bathymetry and sea-surface temperature globally.</p></div></div>
-    <div class="faq-item"><div class="faq-q">How do we start — is there a pilot option?<span class="faq-toggle">+</span></div><div class="faq-a"><p>Yes. A vessel profile and route-to-site study is the standard starting point: we build a custom performance model for a specific vessel and validate the data against your own voyage history, then prove value on a chosen route, corridor, or campaign. Get in touch to scope it.</p></div></div>
-    <div class="faq-item"><div class="faq-q">Is this live on-site monitoring?<span class="faq-toggle">+</span></div><div class="faq-a"><p>No — and we won't pretend otherwise. We improve the current picture <em>upstream</em>, for planning and route-to-site. Live sea-state monitoring and asset-specific execution sit downstream; we make them more effective by getting you there better prepared.</p></div></div>
+    <div class="faq-item reveal"><button class="faq-q" type="button" aria-expanded="false">Do we still need our metocean / weather-routing provider alongside this?<span class="faq-toggle" aria-hidden="true">+</span></button><div class="faq-a"><p>Ocean Bulletin works alongside your existing metocean service as a high-resolution current layer — or as a standalone planning tool. Most teams use it to sharpen decisions their routing and ops people already make, especially on crossings and approaches where current variability is highest and standard models are weakest.</p></div></div>
+    <div class="faq-item reveal" style="--d:.05s"><button class="faq-q" type="button" aria-expanded="false">Is this only relevant for shipping?<span class="faq-toggle" aria-hidden="true">+</span></button><div class="faq-a"><p>No — active users include offshore construction (Boskalis, Heerema), dredging and marine contracting (Van Oord), subsea and cable lay (Orange Marine), defence and naval operations (NATO), research vessels, and superyachts. Anywhere ocean currents, waves, or wind drive an operational decision.</p></div></div>
+    <div class="faq-item reveal" style="--d:.1s"><button class="faq-q" type="button" aria-expanded="false">Can it integrate with our existing systems?<span class="faq-toggle" aria-hidden="true">+</span></button><div class="faq-a"><p>Yes. The MetOcean API delivers data in GPX, CSV, XML, JSON and more — compatible with major navigation systems, VMS platforms, and voyage/project-planning tools. Pull data for any set of waypoints and timestamps in a single API call.</p></div></div>
+    <div class="faq-item reveal" style="--d:.15s"><button class="faq-q" type="button" aria-expanded="false">What areas are covered — including offshore and coastal?<span class="faq-toggle" aria-hidden="true">+</span></button><div class="faq-a"><p>Global ocean coverage (60°S–65°N), with high-resolution tidal layers for the Strait of Gibraltar (1/45°) and the English Channel (AMM15, 1.5 km), plus bathymetry and sea-surface temperature globally.</p></div></div>
+    <div class="faq-item reveal" style="--d:.2s"><button class="faq-q" type="button" aria-expanded="false">How do we start — is there a pilot option?<span class="faq-toggle" aria-hidden="true">+</span></button><div class="faq-a"><p>Yes. A vessel profile and route-to-site study is the standard starting point: we build a custom performance model for a specific vessel and validate the data against your own voyage history, then prove value on a chosen route, corridor, or campaign. Get in touch to scope it.</p></div></div>
+    <div class="faq-item reveal" style="--d:.25s"><button class="faq-q" type="button" aria-expanded="false">Is this live on-site monitoring?<span class="faq-toggle" aria-hidden="true">+</span></button><div class="faq-a"><p>No — and we won't pretend otherwise. We improve the current picture <em>upstream</em>, for planning and route-to-site. Live sea-state monitoring and asset-specific execution sit downstream; we make them more effective by getting you there better prepared.</p></div></div>
   </div>
 
   <div class="divider"></div>
 
   <!-- Next step -->
-  <div class="section-label">Next step</div>
-  <h2 class="section-title-lg">Book a working session.</h2>
-  <p class="body-text">30 minutes with the Amphitrite team. Bring a vessel, a route-to-site, a tow, or a campaign — we'll show you exactly how the data performs on it.</p>
-  <a class="cta-primary" href="https://cal.com/noah-amphitrite/meeting" target="_blank" rel="noopener">Book a working session</a>
-  <div class="cal-row">
-    <a class="cal-btn" href="https://bulletin.amphitrite.fr/" target="_blank" rel="noopener">🌊 Open Ocean Bulletin</a>
-    <a class="cal-btn" href="https://bit.ly/4930s9X" target="_blank" rel="noopener">📄 Read the white paper</a>
+  <div class="reveal">
+    <div class="section-label">Next step</div>
+    <h2 class="section-title-lg">Book a working session.</h2>
+    <p class="body-text">30 minutes with the Amphitrite team. Bring a vessel, a route-to-site, a tow, or a campaign — we'll show you exactly how the data performs on it.</p>
+    <a class="cta-primary" href="https://cal.com/noah-amphitrite/meeting" target="_blank" rel="noopener">Book a working session</a>
+    <div class="cal-row">
+      <a class="cal-btn" href="https://bulletin.amphitrite.fr/" target="_blank" rel="noopener">🌊 Open Ocean Bulletin</a>
+      <a class="cal-btn" href="https://bit.ly/4930s9X" target="_blank" rel="noopener">📄 Read the white paper</a>
+    </div>
   </div>
 
   <footer>
@@ -562,13 +686,55 @@
 </div>
 
 <script>
-  document.querySelectorAll('.faq-q').forEach(function(q){
-    q.addEventListener('click', function(){
-      var a = q.nextElementSibling;
-      var open = a.classList.toggle('open');
-      q.querySelector('.faq-toggle').textContent = open ? '−' : '+';
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Count-up stats */
+  function countUp(el) {
+    var target = parseInt(el.getAttribute('data-count'), 10);
+    if (isNaN(target) || reduce) { el.textContent = el.getAttribute('data-count'); return; }
+    var dur = 900, start = null;
+    function tick(ts) {
+      if (start === null) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(eased * target);
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+    setTimeout(function () { el.textContent = target; }, dur + 150);
+  }
+
+  /* Scroll reveals */
+  var reveals = document.querySelectorAll('.reveal');
+  function showAll() {
+    reveals.forEach(function (el) { el.classList.add('in-view'); });
+    document.querySelectorAll('[data-count]').forEach(function (el) { el.textContent = el.getAttribute('data-count'); });
+  }
+  if (!('IntersectionObserver' in window) || reduce) {
+    showAll();
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('in-view');
+        entry.target.querySelectorAll('[data-count]').forEach(countUp);
+        io.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    reveals.forEach(function (el) { io.observe(el); });
+  }
+
+  /* FAQ accordion */
+  document.querySelectorAll('.faq-q').forEach(function (q) {
+    q.addEventListener('click', function () {
+      var item = q.parentElement;
+      var open = item.classList.toggle('open');
+      q.setAttribute('aria-expanded', open ? 'true' : 'false');
+      q.querySelector('.faq-toggle').textContent = '+';
     });
   });
+})();
 </script>
 </body>
 </html>
