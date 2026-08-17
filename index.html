@@ -306,17 +306,13 @@
     <div class="partners-label">Trusted by</div>
     <div class="partners-wrap">
       <div class="partners-track">
-        <span class="partner-item">Boskalis</span><span class="partner-sep">●</span>
         <span class="partner-item">Heerema</span><span class="partner-sep">●</span>
-        <span class="partner-item">Van Oord</span><span class="partner-sep">●</span>
         <span class="partner-item">Orange Marine</span><span class="partner-sep">●</span>
         <span class="partner-item">NATO</span><span class="partner-sep">●</span>
         <span class="partner-item">ESA</span><span class="partner-sep">●</span>
         <span class="partner-item">CMA CGM</span><span class="partner-sep">●</span>
         <span class="partner-item">Louis Dreyfus Armateurs</span><span class="partner-sep">●</span>
-        <span class="partner-item">Boskalis</span><span class="partner-sep">●</span>
         <span class="partner-item">Heerema</span><span class="partner-sep">●</span>
-        <span class="partner-item">Van Oord</span><span class="partner-sep">●</span>
         <span class="partner-item">Orange Marine</span><span class="partner-sep">●</span>
         <span class="partner-item">NATO</span><span class="partner-sep">●</span>
         <span class="partner-item">ESA</span><span class="partner-sep">●</span>
@@ -430,7 +426,7 @@
     <h2 class="section-title">Wind and wave forecasting is mature. Ocean-current forecasting hasn't reached the same standard — until now.</h2>
     <p class="body-text">Wind models run at near-operational accuracy; wave models follow from wind. But surface currents are a different problem: eddies are roughly <b>ten times smaller</b> than atmospheric storms (≈100 km vs ≈1,000 km), and there are far fewer ocean measurements to anchor the models. The result is positioning errors of <b>tens of nautical miles</b> — enough to flip a routing or work-window decision.</p>
     <div class="problem-box">
-      <p>In Amphitrite's survey of ship captains, <span class="stat-inline">70% rated ocean-current forecasts "average" or "poor"</span> — against just <span class="stat-inline">4% for wind</span>. The two leading operational models (EU Copernicus and US NOAA) routinely disagree on the location and strength of the same current vein on the same day. Misplacing a vein by 30–50 nm changes the decision entirely.</p>
+      <p>In Amphitrite's own survey of ship captains, just <span class="stat-inline">7% rated ocean-current forecasts reliable</span>, against <span class="stat-inline">70% for wind</span>. The two leading operational models (EU Copernicus and US NOAA) routinely disagree on the location and strength of the same current vein on the same day. Misplacing a vein by 30–50 nm changes the decision entirely.</p>
     </div>
   </div>
 
@@ -440,8 +436,8 @@
     <h2 class="section-title">One operational current layer, fused from satellites and validated against the ocean itself.</h2>
   </div>
   <div class="data-steps">
-    <div class="step reveal"><div class="step-num">1</div><div class="step-text"><b>We start from observation, not just simulation.</b> Satellite altimetry (including the new SWOT mission), infrared sea-surface temperature, and chlorophyll imagery — fused with <b>100,000+ independent in-situ drifter measurements</b> across the North Atlantic and off South Africa.</div></div>
-    <div class="step reveal" style="--d:.08s"><div class="step-num">2</div><div class="step-text">That feeds <b>HIRES-CURRENTS</b>, our proprietary deep-learning current model. It resolves the mesoscale eddies, current veins, and tidal signatures that numerical models miss — at <b>3.0 km resolution, hourly, tidal-aware</b>, with a 14-day forecast horizon and global coverage (60°S–65°N).</div></div>
+    <div class="step reveal"><div class="step-num">1</div><div class="step-text"><b>We start from observation, not just simulation.</b> Satellite altimetry (including the new SWOT mission), infrared sea-surface temperature, and chlorophyll imagery — fused with <b>over 165,000 independent in-situ drifter measurements</b> across the North Atlantic and off South Africa.</div></div>
+    <div class="step reveal" style="--d:.08s"><div class="step-num">2</div><div class="step-text">That feeds <b>HIRES-CURRENTS</b>, our proprietary deep-learning current model. It resolves the mesoscale eddies, current veins, and tidal signatures that numerical models miss — at <b>3.0 km resolution, hourly, tidal-aware</b>, with global coverage (60°S–65°N).</div></div>
     <div class="step reveal" style="--d:.16s"><div class="step-num">3</div><div class="step-text"><b>Wind and waves are included</b> — we are not a single-variable shop. We also run active research into wave–current coupling, which gives more realistic wave characteristics inside current-affected areas than wave models alone.</div></div>
     <div class="step reveal" style="--d:.24s"><div class="step-num">4</div><div class="step-text"><b>You consume it where you work:</b> the <b>Ocean Bulletin</b> platform for day-to-day planning, or the <b>MetOcean API</b> (GPX, CSV, JSON, XML) into your VMS, navigation, and project-planning tools — hindcast and forecast from one unified source.</div></div>
   </div>
@@ -651,7 +647,7 @@
   </div>
   <div class="faq-list">
     <div class="faq-item reveal"><button class="faq-q" type="button" aria-expanded="false">Do we still need our metocean / weather-routing provider alongside this?<span class="faq-toggle" aria-hidden="true">+</span></button><div class="faq-a"><p>Ocean Bulletin works alongside your existing metocean service as a high-resolution current layer — or as a standalone planning tool. Most teams use it to sharpen decisions their routing and ops people already make, especially on crossings and approaches where current variability is highest and standard models are weakest.</p></div></div>
-    <div class="faq-item reveal" style="--d:.05s"><button class="faq-q" type="button" aria-expanded="false">Is this only relevant for shipping?<span class="faq-toggle" aria-hidden="true">+</span></button><div class="faq-a"><p>No — active users include offshore construction (Boskalis, Heerema), dredging and marine contracting (Van Oord), subsea and cable lay (Orange Marine), defence and naval operations (NATO), research vessels, and superyachts. Anywhere ocean currents, waves, or wind drive an operational decision.</p></div></div>
+    <div class="faq-item reveal" style="--d:.05s"><button class="faq-q" type="button" aria-expanded="false">Is this only relevant for shipping?<span class="faq-toggle" aria-hidden="true">+</span></button><div class="faq-a"><p>No — active users include offshore construction and heavy lift (Heerema), subsea and cable lay (Orange Marine), defence and naval operations (NATO), research vessels, and superyachts. Anywhere ocean currents, waves, or wind drive an operational decision.</p></div></div>
     <div class="faq-item reveal" style="--d:.1s"><button class="faq-q" type="button" aria-expanded="false">Can it integrate with our existing systems?<span class="faq-toggle" aria-hidden="true">+</span></button><div class="faq-a"><p>Yes. The MetOcean API delivers data in GPX, CSV, XML, JSON and more — compatible with major navigation systems, VMS platforms, and voyage/project-planning tools. Pull data for any set of waypoints and timestamps in a single API call.</p></div></div>
     <div class="faq-item reveal" style="--d:.15s"><button class="faq-q" type="button" aria-expanded="false">What areas are covered — including offshore and coastal?<span class="faq-toggle" aria-hidden="true">+</span></button><div class="faq-a"><p>Global ocean coverage (60°S–65°N), with high-resolution tidal layers for the Strait of Gibraltar (1/45°) and the English Channel (AMM15, 1.5 km), plus bathymetry and sea-surface temperature globally.</p></div></div>
     <div class="faq-item reveal" style="--d:.2s"><button class="faq-q" type="button" aria-expanded="false">How do we start — is there a pilot option?<span class="faq-toggle" aria-hidden="true">+</span></button><div class="faq-a"><p>Yes. A vessel profile and route-to-site study is the standard starting point: we build a custom performance model for a specific vessel and validate the data against your own voyage history, then prove value on a chosen route, corridor, or campaign. Get in touch to scope it.</p></div></div>
